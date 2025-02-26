@@ -1,3 +1,150 @@
-.header {
+@mixin flex($justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-center {
+    @include flex(center, center);
+}
+
+@mixin auto {
     width: 100%;
+    height: auto;
+}
+
+body {
+    background-color: #F4F4F4;
+}
+
+// Header 
+
+.header {
+    @include flex-center;
+    height: 100px;
+        .content-logo {
+            @include flex(start);
+            width: 33.33%;
+            margin-left: 2.5em;
+            .logo {
+                width: 41.67px;
+                height: 20px;
+        }
+    }
+    .content-link {
+        @include flex-center;
+            width: 33.33%;
+            gap: 1em;
+            .nav-button {
+                @include flex;
+                width: 82px;
+                height: 32px;
+                border-radius: 100px;
+                background: linear-gradient(0deg, #fff, #e2e2e2, #fff);
+                border: 2px solid transparent; 
+                font-size: 16px;
+                cursor: pointer;
+                color: #707070;
+                position: relative;
+                z-index: 1;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: 100px;
+                    background: #F4F4F4;
+                    z-index: -1;
+                    padding: 2px;
+                    box-sizing: border-box;
+            }
+            &.active {
+                background-color: #000; 
+                color: #fff; 
+                &::before {
+                    background: #000; 
+                    border: none;
+                  }
+              }
+        }        
+    }
+    .content-link-contact {
+            @include flex(end);
+            width: 33.33%;
+            margin-right: 2.5em;
+            .contact-button {
+                @include flex;
+                width: 97px;
+                height: 32px;
+                border-radius: 100px;
+                cursor: pointer;
+                background-color: #181818;
+                color: #fff;
+                font-size: 16px;
+                border: none;
+                box-shadow: 0px 4px 8px rgba(169, 169, 169, 0.4);
+        }
+    }
+}
+
+// Footer 
+
+.footer {
+    @include flex-center;
+    height: 634px;
+    background-color: #FF4500;
+    .content-logo-footer {
+        @include auto;
+        @include flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        .logo-footer {
+            height: 204.96px;
+            width: 427px;
+            align-self: flex-start; // Place le logo en haut
+            margin-top: 3em;
+            margin-left: 2em;
+        }
+        p {
+            color: #181818;
+            align-self: flex-start; // Place le logo en haut
+            margin-left: 2em;
+            margin-top: auto;
+            margin-bottom: 2em;
+            font-size: 14px;
+        }
+    }
+    .content-link-footer {
+        @include auto;
+        @include flex-center;
+        width: 50%;
+    }
+}
+
+// DropArrow
+
+.content-drop-arrow {
+    @include auto;
+    @include flex (end);
+    
+    .drop-arrow {
+        @include flex-center;
+        height: 40px;
+        width: 40px;
+        position: fixed;
+        bottom:3vh;
+        cursor: pointer;
+        right: 2em;
+    }
+}
+
+//Front 
+
+.content-front {
+    @include auto;
+    height: 90vh;
+    background-color: #fff;
 }
