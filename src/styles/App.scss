@@ -13,15 +13,29 @@
     height: auto;
 }
 
-body {
-    background-color: #F4F4F4;
-}
-
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../assets/fonts/ppneuemontreal-medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
 // Header 
 
 .header {
     @include flex-center;
     height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #F4F4F4;
+    transition: background-color 0.3s ease-in-out;
+    &.scrolled {
+        background: white; // Changement de couleur au scroll
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Légère ombre pour l'effet flottant
+    }
         .content-logo {
             @include flex(start);
             width: 33.33%;
@@ -47,6 +61,8 @@ body {
                 color: #707070;
                 position: relative;
                 z-index: 1;
+                font-family: 'PP Neue Montreal', sans-serif;
+                font-weight: 200;
                 &::before {
                     content: '';
                     position: absolute;
@@ -85,6 +101,8 @@ body {
                 font-size: 16px;
                 border: none;
                 box-shadow: 0px 4px 8px rgba(169, 169, 169, 0.4);
+                font-family: 'PP Neue Montreal', sans-serif;
+                font-weight: 200
         }
     }
 }
@@ -99,18 +117,18 @@ body {
         @include auto;
         @include flex;
         flex-direction: column;
-        width: 50%;
+        width: 100%;
         height: 100%;
         .logo-footer {
             height: 204.96px;
             width: 427px;
-            align-self: flex-start; // Place le logo en haut
+            align-self: flex-start; 
             margin-top: 3em;
             margin-left: 2em;
         }
         p {
             color: #181818;
-            align-self: flex-start; // Place le logo en haut
+            align-self: flex-start; 
             margin-left: 2em;
             margin-top: auto;
             margin-bottom: 2em;
@@ -120,31 +138,114 @@ body {
     .content-link-footer {
         @include auto;
         @include flex-center;
-        width: 50%;
+        width: 0%;
     }
 }
 
 // DropArrow
 
-.content-drop-arrow {
-    @include auto;
-    @include flex (end);
-    
-    .drop-arrow {
-        @include flex-center;
-        height: 40px;
-        width: 40px;
-        position: fixed;
-        bottom:3vh;
-        cursor: pointer;
-        right: 2em;
+.drop-arrow {
+    @include flex;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    &.hidden {
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+    }
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    img {
+        width: 24px;
+        height: 24px;
     }
 }
 
+
 //Front 
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    75% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-5px) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+    70% { transform: translateY(-5px) rotate(-0.5deg); }
+}
+
 
 .content-front {
     @include auto;
-    height: 90vh;
+    @include flex(end);
+    flex-direction: column;
+    height: 100vh;
     background-color: #fff;
+    .content-logo-front {
+        @include flex-center;
+        @include auto;
+            img {
+            animation: bounce 3s ease-in-out infinite;
+            height: 150px;
+            &:hover {
+                animation: shake 0.3s ease-in-out;
+            }
+        }
+    }
+    
+    .content-title-front {
+        @include flex-center;
+        @include auto;
+        flex-direction: column;
+        h1 {
+            @include flex-center;
+            flex-direction: column;
+            color:#181818;
+            font-size: 65px;
+            font-weight: 500;
+            font-family: 'PP Neue Montreal', sans-serif;
+            line-height: 70px;
+            margin-bottom: 0;
+            margin-top: 1em;
+        }
+        p {
+            font-weight: 500;
+            font-size: 18px;
+            font-family: 'PP Neue Montreal', sans-serif;
+            margin-top: 1em;
+            margin-bottom: 3em;
+            .grey-text {
+                color: #D9D9D9;
+                transition: color 0.3s ease-in-out;
+                &:hover {
+                   color: #FF4500;
+                   
+                }
+            }
+        }
+    }
+    .content-arrow-front {
+        @include flex-center;
+        @include auto;
+        margin-bottom: 5em;
+        img {
+            cursor: pointer;
+            height: 20px;
+        }
+    }
 }

@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
-import '../styles/App.scss';
-import logo from '../assets/logo.png';
+import React, { useState, useEffect } from "react";
+import "../styles/App.scss";
+import logo from "../assets/logo.png";
 
 function Header() {
   const buttons = ["What", "Who", "How", "Plans"];
-  const [activeButton, setActiveButton] = useState(null); 
-  const contactButton = { label: "Contact", className: "contact-button" };
+  const [activeButton, setActiveButton] = useState(null);
+  const [scrolled, setScrolled] = useState(false); // État pour détecter le scroll
 
   const handleButtonClick = (index) => {
-    setActiveButton(index); 
+    setActiveButton(index);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="content-logo">
         <img src={logo} alt="" className="logo" />
       </div>
@@ -20,21 +33,21 @@ function Header() {
         {buttons.map((item, index) => (
           <button
             key={index}
-            className={`nav-button ${activeButton === index ? 'active' : ''}`} 
+            className={`nav-button ${activeButton === index ? "active" : ""}`}
             aria-label={item}
-            onClick={() => handleButtonClick(index)} 
+            onClick={() => handleButtonClick(index)}
           >
             {item}
           </button>
         ))}
       </div>
       <div className="content-link-contact">
-        <button className={contactButton.className} aria-label={contactButton.label}>
-          {contactButton.label}
+        <button className="contact-button" aria-label="Contact">
+          Contact
         </button>
       </div>
     </header>
   );
-};
+}
 
 export default Header;

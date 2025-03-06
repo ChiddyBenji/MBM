@@ -1,35 +1,29 @@
-import { useEffect } from 'react';
-import '../styles/App.scss';
-import droparrow from '../assets/arrow.png';
+import { useState, useEffect, useCallback } from "react";
+import "../styles/App.scss";
+import droparrow from "../assets/arrow.png";
 
 function DropArrow() {
-  useEffect(() => {
-    const handleScroll = () => {
-      const dropArrow = document.querySelector('.drop-arrow');
-      if (window.scrollY > 200) {
-        dropArrow.style.display = 'block'; 
-      } else {
-        dropArrow.style.display = 'none'; 
-      }
-    };
+  const [showArrow, setShowArrow] = useState(false);
 
-    window.addEventListener('scroll', handleScroll);
-    
-   return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+  const handleScroll = useCallback(() => {
+    setShowArrow(window.scrollY > 200);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div className="content-drop-arrow">
-      <div className="drop-arrow" onClick={scrollToTop}>
+      <div
+        className={`drop-arrow ${showArrow ? "visible" : "hidden"}`}
+        onClick={scrollToTop}
+      >
         <img src={droparrow} alt="Flèche vers le haut" />
       </div>
     </div>
