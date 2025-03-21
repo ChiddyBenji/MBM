@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";  
 import "../styles/App.scss";
 import logo from "../assets/logo.png";
 
@@ -27,18 +28,21 @@ function Header() {
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="content-logo">
-        <img src={logo} alt="" className="logo" />
+      <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
       </div>
       <div className="content-link">
         {buttons.map((item, index) => (
-          <button
+          <Link
             key={index}
+            to={`/${item.toLowerCase()}`}  
             className={`nav-button ${activeButton === index ? "active" : ""}`}
             aria-label={item}
             onClick={() => handleButtonClick(index)}
           >
             {item}
-          </button>
+          </Link>
         ))}
       </div>
       <div className="content-link-contact">

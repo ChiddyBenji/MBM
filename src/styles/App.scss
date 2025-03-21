@@ -1,251 +1,413 @@
 @mixin flex($justify: center, $align: center) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 @mixin flex-center {
-    @include flex(center, center);
+  @include flex(center, center);
 }
 
 @mixin auto {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 @font-face {
-    font-family: 'PP Neue Montreal';
-    src: url('../assets/fonts/ppneuemontreal-medium.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-// Header 
-
-.header {
-    @include flex-center;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #F4F4F4;
-    transition: background-color 0.3s ease-in-out;
-    &.scrolled {
-        background: white; // Changement de couleur au scroll
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Légère ombre pour l'effet flottant
-    }
-        .content-logo {
-            @include flex(start);
-            width: 33.33%;
-            margin-left: 2.5em;
-            .logo {
-                width: 41.67px;
-                height: 20px;
-        }
-    }
-    .content-link {
-        @include flex-center;
-            width: 33.33%;
-            gap: 1em;
-            .nav-button {
-                @include flex;
-                width: 82px;
-                height: 32px;
-                border-radius: 100px;
-                background: linear-gradient(0deg, #fff, #e2e2e2, #fff);
-                border: 2px solid transparent; 
-                font-size: 16px;
-                cursor: pointer;
-                color: #707070;
-                position: relative;
-                z-index: 1;
-                font-family: 'PP Neue Montreal', sans-serif;
-                font-weight: 200;
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    border-radius: 100px;
-                    background: #F4F4F4;
-                    z-index: -1;
-                    padding: 2px;
-                    box-sizing: border-box;
-            }
-            &.active {
-                background-color: #000; 
-                color: #fff; 
-                &::before {
-                    background: #000; 
-                    border: none;
-                  }
-              }
-        }        
-    }
-    .content-link-contact {
-            @include flex(end);
-            width: 33.33%;
-            margin-right: 2.5em;
-            .contact-button {
-                @include flex;
-                width: 97px;
-                height: 32px;
-                border-radius: 100px;
-                cursor: pointer;
-                background-color: #181818;
-                color: #fff;
-                font-size: 16px;
-                border: none;
-                box-shadow: 0px 4px 8px rgba(169, 169, 169, 0.4);
-                font-family: 'PP Neue Montreal', sans-serif;
-                font-weight: 200
-        }
-    }
+  font-family: "PP Neue Montreal";
+  src: url("../assets/fonts/ppneuemontreal-medium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-// Footer 
+.content-who {
+  height: 100vh;
+  @include flex;
+}
+
+// Header
+
+.header {
+  @include flex-center;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s ease-in-out;
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .content-logo {
+    @include flex(start);
+    width: 33.33%;
+    margin-left: 2.5em;
+    .logo {
+      width: 41.67px;
+      height: 20px;
+    }
+  }
+  .content-link {
+    @include flex-center;
+    width: 33.33%;
+    gap: 1em;
+    .nav-button {
+      @include flex;
+      width: 82px;
+      height: 32px;
+      border-radius: 100px;
+      background: linear-gradient(0deg, #fff, #e2e2e2, #fff);
+      border: 2px solid transparent;
+      font-size: 16px;
+      cursor: pointer;
+      color: #707070;
+      position: relative;
+      z-index: 1;
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 200;
+      text-decoration: none;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 100px;
+        background: #f4f4f4;
+        z-index: -1;
+        padding: 2px;
+        box-sizing: border-box;
+      }
+      &.active {
+        background-color: #000;
+        color: #fff;
+        &::before {
+          background: #000;
+          border: none;
+        }
+      }
+    }
+  }
+  .content-link-contact {
+    @include flex(end);
+    width: 33.33%;
+    margin-right: 2.5em;
+    .contact-button {
+      @include flex;
+      width: 97px;
+      height: 32px;
+      border-radius: 100px;
+      cursor: pointer;
+      background-color: #181818;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      box-shadow: 0px 4px 8px rgba(169, 169, 169, 0.4);
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 200;
+    }
+  }
+}
+
+// Footer
 
 .footer {
+  @include flex-center;
+  height: 634px;
+  background-color: #ff4500;
+  .content-logo-footer {
+    @include auto;
+    @include flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    .logo-footer {
+      height: 204.96px;
+      width: 427px;
+      align-self: flex-start;
+      margin-top: 3em;
+      margin-left: 2em;
+    }
+    p {
+      color: #181818;
+      align-self: flex-start;
+      margin-left: 2em;
+      margin-top: auto;
+      margin-bottom: 2em;
+      font-size: 14px;
+    }
+  }
+  .content-link-footer {
+    @include auto;
     @include flex-center;
-    height: 634px;
-    background-color: #FF4500;
-    .content-logo-footer {
-        @include auto;
-        @include flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        .logo-footer {
-            height: 204.96px;
-            width: 427px;
-            align-self: flex-start; 
-            margin-top: 3em;
-            margin-left: 2em;
-        }
-        p {
-            color: #181818;
-            align-self: flex-start; 
-            margin-left: 2em;
-            margin-top: auto;
-            margin-bottom: 2em;
-            font-size: 14px;
-        }
-    }
-    .content-link-footer {
-        @include auto;
-        @include flex-center;
-        width: 0%;
-    }
+    width: 0%;
+  }
 }
 
 // DropArrow
 
 .drop-arrow {
-    @include flex;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    &.hidden {
-        opacity: 0;
-        transform: translateY(20px);
-        pointer-events: none;
-    }
-    &.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    img {
-        width: 24px;
-        height: 24px;
-    }
+  @include flex;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  &.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  img {
+    width: 24px;
+    height: 24px;
+  }
 }
 
-
-//Front 
+//Front
 
 @keyframes shake {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(5deg); }
-    50% { transform: rotate(-5deg); }
-    75% { transform: rotate(3deg); }
-    100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    30% { transform: translateY(-5px) rotate(-1deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
-    70% { transform: translateY(-5px) rotate(-0.5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  70% {
+    transform: translateY(-5px) rotate(-0.5deg);
+  }
 }
 
-
 .content-front {
+  @include auto;
+  @include flex(end);
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f4f4;
+  .content-logo-front {
+    @include flex-center;
     @include auto;
-    @include flex(end);
+    img {
+      animation: bounce 3s ease-in-out infinite;
+      height: 150px;
+      &:hover {
+        animation: shake 0.3s ease-in-out;
+      }
+    }
+  }
+
+  .content-title-front {
+    @include flex-center;
+    @include auto;
     flex-direction: column;
+    h1 {
+      @include flex-center;
+      flex-direction: column;
+      color: #181818;
+      font-size: 65px;
+      font-weight: 500;
+      font-family: "PP Neue Montreal", sans-serif;
+      line-height: 70px;
+      margin-bottom: 0;
+      margin-top: 1em;
+    }
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      font-family: "PP Neue Montreal", sans-serif;
+      margin-top: 1em;
+      margin-bottom: 3em;
+      .grey-text {
+        color: #d9d9d9;
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          color: #ff4500;
+        }
+      }
+    }
+  }
+  .content-arrow-front {
+    @include flex-center;
+    @include auto;
+    margin-bottom: 5em;
+    img {
+      cursor: pointer;
+      height: 20px;
+    }
+  }
+}
+
+// description
+
+.content-description {
+  @include auto;
+  @include flex;
+  .content-txt-description {
+    @include flex(start, start);
+    flex-direction: column;
+    width: 50%;
     height: 100vh;
-    background-color: #fff;
-    .content-logo-front {
-        @include flex-center;
-        @include auto;
-            img {
-            animation: bounce 3s ease-in-out infinite;
-            height: 150px;
-            &:hover {
-                animation: shake 0.3s ease-in-out;
-            }
-        }
+    padding: 3em 0 3em 3em;
+    h2 {
+      font-size: 40px;
+      font-family: "PP Neue Montreal", sans-serif;
+      margin-bottom: 0;
+      margin-top: 5em;
+      font-weight: 500;
     }
-    
-    .content-title-front {
-        @include flex-center;
-        @include auto;
+    p {
+      font-weight: 300;
+      margin-top: 0.5em;
+      font-size: 17px;
+    }
+  }
+  .content-dropdown-description {
+    @include flex(start, start);
+    width: 50%;
+    height: 100vh;
+    padding: 3em 3em 3em 0;
+    .content-dropdown {
+      @include flex;
+      @include auto;
+      height: 50vh;
+      margin-top: 11em;
+      align-items: inherit;
+      .cards-dropdown {
+        width: 100%;
+        display: flex;
         flex-direction: column;
-        h1 {
-            @include flex-center;
-            flex-direction: column;
-            color:#181818;
-            font-size: 65px;
-            font-weight: 500;
-            font-family: 'PP Neue Montreal', sans-serif;
-            line-height: 70px;
-            margin-bottom: 0;
-            margin-top: 1em;
-        }
-        p {
-            font-weight: 500;
-            font-size: 18px;
-            font-family: 'PP Neue Montreal', sans-serif;
-            margin-top: 1em;
-            margin-bottom: 3em;
-            .grey-text {
-                color: #D9D9D9;
-                transition: color 0.3s ease-in-out;
-                &:hover {
-                   color: #FF4500;
-                   
-                }
+      }
+      .dropdown {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .dropdown-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 48px;
+          font-weight: bold;
+          font-family: "PP Neue Montreal", sans-serif;
+          width: 100%;
+          padding: 0.5em 0;
+
+          .left-content {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            font-size: 40px;
+            color: rgba(0, 0, 0, 0.4);
+          }
+
+          .shape {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            background-color: white;
+            margin-left: 0.2em;
+          }
+
+          .square {
+            border: 5px solid rgba(0, 0, 0, 0.4); /* Bordure noire pour carré */
+          }
+
+          .circle {
+            border-radius: 50%;
+            border: 5px solid rgba(0, 0, 0, 0.4); /* Bordure noire pour carré */
+          }
+
+          .triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 39.6px solid white; /* Fond blanc */
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: -9px; /* Ajuste pour le contour */
+              left: -30px; /* Ajuste pour le contour */
+              border-left: 30px solid transparent;
+              border-right: 30px solid transparent;
+              border-bottom: 54px solid rgba(0, 0, 0, 0.4); /* Contour noir */
+              z-index: -1;
             }
-        }
-    }
-    .content-arrow-front {
-        @include flex-center;
-        @include auto;
-        margin-bottom: 5em;
-        img {
+          }
+
+          .toggle-button {
+            color: rgba(0, 0, 0, 0.4);
+            background: none;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
-            height: 20px;
+            transition: transform 0.3s ease-in-out;
+          }
+
+          .toggle-button.open {
+            transform: rotate(45deg);
+          }
         }
+
+        .separator {
+          width: 100%;
+          height: 2px;
+          background-color: rgba(0, 0, 0, 0.4);
+          margin-bottom: 1em;
+        }
+
+        .dropdown-content {
+          display: none;
+          font-size: 18px;
+          padding: 1em;
+          background: #f4f4f4;
+          border-radius: 8px;
+          width: 100%;
+        }
+
+        &.open .dropdown-content {
+          display: block;
+        }
+      }
     }
+  }
 }

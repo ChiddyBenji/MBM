@@ -14,7 +14,7 @@ function Front() {
   ];
 
   const scrollToNextSection = () => {
-    const nextSection = document.querySelector(".content-logo-footer");
+    const nextSection = document.querySelector(".content-description");
     if (nextSection) {
       window.scrollTo({
         top: nextSection.offsetTop,
