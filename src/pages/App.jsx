@@ -9,6 +9,7 @@ import Plans from "../pages/plans";
 import What from "../pages/what";
 import Who from "../pages/who";
 import Description from "../components/description";
+import Slideshow from "../components/slideshow";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <>
               <Front />
               <Description />
+              <Slideshow />
             </>
           }
         />

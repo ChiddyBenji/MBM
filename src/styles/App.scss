@@ -282,25 +282,25 @@
     @include flex(start, start);
     flex-direction: column;
     width: 50%;
-    height: 100vh;
+    height: 85vh;
     padding: 3em 0 3em 3em;
     h2 {
-      font-size: 40px;
+      font-size: 42px;
       font-family: "PP Neue Montreal", sans-serif;
       margin-bottom: 0;
-      margin-top: 5em;
+      margin-top: 4.5em;
       font-weight: 500;
     }
     p {
       font-weight: 300;
       margin-top: 0.5em;
-      font-size: 17px;
+      font-size: 18px;
     }
   }
   .content-dropdown-description {
     @include flex(start, start);
     width: 50%;
-    height: 100vh;
+    height: 85vh;
     padding: 3em 3em 3em 0;
     .content-dropdown {
       @include flex;
@@ -309,10 +309,11 @@
       margin-top: 11em;
       align-items: inherit;
       .cards-dropdown {
-        width: 100%;
         display: flex;
         flex-direction: column;
+        width: 100%;
       }
+
       .dropdown {
         display: flex;
         flex-direction: column;
@@ -332,7 +333,7 @@
             display: flex;
             align-items: center;
             gap: 1em;
-            font-size: 40px;
+            font-size: 38px;
             color: rgba(0, 0, 0, 0.4);
           }
 
@@ -345,30 +346,31 @@
           }
 
           .square {
-            border: 5px solid rgba(0, 0, 0, 0.4); /* Bordure noire pour carré */
+            border: 4px solid rgba(0, 0, 0, 0.4);
           }
 
           .circle {
             border-radius: 50%;
-            border: 5px solid rgba(0, 0, 0, 0.4); /* Bordure noire pour carré */
+            border: 4px solid rgba(0, 0, 0, 0.4);
           }
 
           .triangle {
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 39.6px solid white; /* Fond blanc */
+            border-left: 15.33px solid transparent;
+            border-right: 15.33px solid transparent;
+            border-bottom: 30px solid white;
             position: relative;
+            margin-left: 0.4em;
 
             &::before {
               content: "";
               position: absolute;
-              top: -9px; /* Ajuste pour le contour */
-              left: -30px; /* Ajuste pour le contour */
-              border-left: 30px solid transparent;
-              border-right: 30px solid transparent;
-              border-bottom: 54px solid rgba(0, 0, 0, 0.4); /* Contour noir */
+              top: -7.9px;
+              left: -22px;
+              border-left: 22px solid transparent;
+              border-right: 22px solid transparent;
+              border-bottom: 42.33px solid rgba(0, 0, 0, 0.4);
               z-index: -1;
             }
           }
@@ -382,10 +384,6 @@
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
           }
-
-          .toggle-button.open {
-            transform: rotate(45deg);
-          }
         }
 
         .separator {
@@ -395,17 +393,131 @@
           margin-bottom: 1em;
         }
 
-        .dropdown-content {
-          display: none;
-          font-size: 18px;
-          padding: 1em;
-          background: #f4f4f4;
-          border-radius: 8px;
-          width: 100%;
+        &:hover .separator {
+          background-color: #181818;
         }
 
-        &.open .dropdown-content {
-          display: block;
+        &:hover .square {
+          border: 4px solid black;
+        }
+
+        &:hover .circle {
+          border: 4px solid black;
+        }
+
+        &:hover .triangle {
+          &::before {
+            border-bottom: 42.33px solid rgb(0, 0, 0);
+          }
+        }
+
+        &:hover .toggle-button {
+          color: #181818;
+          transform: rotate(45deg);
+        }
+
+        &:hover .left-content {
+          color: #181818;
+        }
+
+        &:hover .dropdown-content {
+          opacity: 1;
+          max-height: 200px;
+        }
+
+        .dropdown-content {
+          font-size: 18px;
+          padding: 0.2em;
+          border-radius: 8px;
+          width: 100%;
+          font-family: "PP Neue Montreal", sans-serif;
+          font-weight: 200;
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+          p {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Slideshow
+
+.content-slideshow {
+  @include auto;
+  @include flex;
+  flex-direction: column;
+  .content-txt-slideshow {
+    @include flex(start);
+    @include auto;
+    height: 20vh;
+    .content-para-slideshow {
+      padding-left: 3em;
+      h2 {
+        font-size: 42px;
+        font-family: "PP Neue Montreal", sans-serif;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+      p {
+        font-weight: 300;
+        font-size: 18px;
+        margin-top: 0.5em;
+      }
+    }
+  }
+  .slideshow {
+    @include flex;
+    @include auto;
+    flex-direction: column;
+    .content-cards-slideshow {
+      width: 960px;
+      height: 620px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1);
+      .img-slideshow {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+      }
+      h2 {
+        margin-left: 1.5em;
+        font-size: 32px;
+        color: #181818;
+        margin-top: 0.5em;
+        margin-bottom: 0.2em;
+        font-family: "PP Neue Montreal", sans-serif;
+      }
+      p {
+        margin-left: 3em;
+        margin-right: 5em;
+        color: #181818;
+        font-size: 18px;
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .content-indentation {
+      @include auto;
+      @include flex;
+
+      height: 10em;
+      .identation {
+        width: 12px;
+        height: 12px;
+        background-color: #1818184d;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        &:active {
+          background-color: #ff4500;
+          transform: translateY(-0.5em);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1);
         }
       }
     }

@@ -1,49 +1,44 @@
-import { useState } from "react";
 import "../styles/App.scss";
 
 function Dropdown() {
   const dropdowns = [
-    { title: "INTEMPOREL", shape: "square" },
-    { title: "MODERNE", shape: "circle" },
-    { title: "EFFICACE", shape: "triangle" },
+    {
+      title: "INTEMPOREL",
+      shape: "square",
+      content: "Un style intemporel qui traverse les époques.",
+    },
+    {
+      title: "MODERNE",
+      shape: "circle",
+      content: "Un design moderne qui s’adapte aux tendances actuelles.",
+    },
+    {
+      title: "EFFICACE",
+      shape: "triangle",
+      content:
+        "Chaque pixel a un rôle. Conversion, navigation, accessibilité : nous optimisons chaque détail pour vos objectifs.",
+    },
   ];
-
-  const [openDropdown, setOpenDropdown] = useState(null);
-
-  const toggleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? null : index);
-  };
 
   return (
     <div className="cards-dropdown">
       {dropdowns.map((item, index) => (
-        <div
-          key={index}
-          className={`dropdown ${openDropdown === index ? "open" : ""}`}
-        >
+        <div key={index} className="dropdown">
           <div className="dropdown-header">
             <div className="left-content">
-              {/* Appliquer une logique spéciale pour le triangle */}
               {item.shape === "triangle" ? (
-                <div className="triangle"></div> // Applique un style triangle ici
+                <div className="triangle"></div>
               ) : (
-                <div className={`shape ${item.shape}`}></div> // Pour square et circle
+                <div className={`shape ${item.shape}`}></div>
               )}
               {item.title}
             </div>
-            <button
-              className={`toggle-button ${
-                openDropdown === index ? "open" : ""
-              }`}
-              onClick={() => toggleDropdown(index)}
-            >
-              +
-            </button>
+            <button className="toggle-button">+</button>
+          </div>
+          <div className="dropdown-content">
+            <p>{item.content}</p>
           </div>
           <div className="separator"></div>
-          <div className="dropdown-content">
-            <p>Contenu du menu {item.title}</p>
-          </div>
         </div>
       ))}
     </div>
