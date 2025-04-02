@@ -10,6 +10,7 @@ import What from "../pages/what";
 import Who from "../pages/who";
 import Description from "../components/description";
 import Slideshow from "../components/slideshow";
+import Template from "../components/templates";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Front />
               <Description />
               <Slideshow />
+              <Template />
             </>
           }
         />

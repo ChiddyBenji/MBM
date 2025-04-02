@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/App.scss";
 
 function Dropdown() {
@@ -20,10 +21,17 @@ function Dropdown() {
     },
   ];
 
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <div className="cards-dropdown">
       {dropdowns.map((item, index) => (
-        <div key={index} className="dropdown">
+        <div
+          key={index}
+          className="dropdown"
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
           <div className="dropdown-header">
             <div className="left-content">
               {item.shape === "triangle" ? (
@@ -33,7 +41,9 @@ function Dropdown() {
               )}
               {item.title}
             </div>
-            <button className="toggle-button">+</button>
+            <button className="toggle-button">
+              {hoveredIndex === index ? "-" : "+"}
+            </button>
           </div>
           <div className="dropdown-content">
             <p>{item.content}</p>

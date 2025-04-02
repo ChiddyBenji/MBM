@@ -40,7 +40,6 @@
   &.scrolled {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
   .content-logo {
     @include flex(start);
@@ -383,7 +382,6 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out;
           }
         }
 
@@ -414,7 +412,7 @@
 
         &:hover .toggle-button {
           color: #181818;
-          transform: rotate(45deg);
+          transform: rotate(0deg);
         }
 
         &:hover .left-content {
@@ -496,39 +494,40 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      transition: 
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), 
-        opacity 0.9s ease-in-out, 
-        filter 0.5s ease-in-out;
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.9s ease-in-out, filter 0.5s ease-in-out;
       opacity: 0;
       transform: scale(0.85) translateX(-120%) rotateY(-10deg);
       filter: blur(8px);
-    
+
       &.active {
         opacity: 1;
         transform: scale(1) translateX(0) rotateY(0);
         filter: blur(0);
         z-index: 10;
       }
-    
+
       &.prev {
         opacity: 0.5;
         transform: scale(0.85) translateX(-130%) rotateY(-15deg);
-        top: 20%;
-        left: 10px;
-        filter: blur(5px);
+        top: 30%;
+        left: 50px;
+        filter: blur(0px);
         cursor: pointer;
+        width: 80%;
+        height: 28em;
       }
-    
+
       &.next {
         opacity: 0.5;
         transform: scale(0.85) translateX(130%) rotateY(15deg);
-        top: 20%;
-        right: 10px;
-        filter: blur(5px);
+        top: 30%;
+        right: 50px;
+        filter: blur(0px);
         cursor: pointer;
+        width: 80%;
+        height: 28em;
       }
-    
 
       .slide-img {
         width: 100%;
@@ -582,4 +581,49 @@
       }
     }
   }
+}
+
+// template
+
+.content-templates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.circle-container {
+  position: relative;
+  width: 40%;
+  height: 40vh;
+}
+
+.center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #007bff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.circle-item {
+  @include flex;
+  position: absolute;
+  width: 50%;
+  height: 170px;
+  object-fit: cover;
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  top: 50%;
+  left: 50%;
 }

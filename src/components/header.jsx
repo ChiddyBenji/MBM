@@ -4,7 +4,7 @@ import "../styles/App.scss";
 import logo from "../assets/logo.png";
 
 function Header() {
-  const buttons = ["What", "Who", "How", "Plans"];
+  const buttons = ["Who", "How", "What", "Template", "Plans"];
   const [activeButton, setActiveButton] = useState(null);
   const [scrolled, setScrolled] = useState(false); // État pour détecter le scroll
 
