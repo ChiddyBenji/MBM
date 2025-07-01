@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/MBM/static/css/main.1d988bb0.css",
+    "main.js": "/MBM/static/js/main.68b170d6.js",
+    "static/js/453.31867077.chunk.js": "/MBM/static/js/453.31867077.chunk.js",
+    "static/media/cat.jpg": "/MBM/static/media/cat.89d9f80f43cebd7ebd0f.jpg",
+    "static/media/dog.jpg": "/MBM/static/media/dog.1a84c6f823aaa59cf02d.jpg",
+    "static/media/fox.jpg": "/MBM/static/media/fox.e6af929cfa320cf36126.jpg",
+    "static/media/ppneuemontreal-medium.otf": "/MBM/static/media/ppneuemontreal-medium.0f34f4714f1b26e0dedc.otf",
+    "index.html": "/MBM/index.html",
+    "main.1d988bb0.css.map": "/MBM/static/css/main.1d988bb0.css.map",
+    "main.68b170d6.js.map": "/MBM/static/js/main.68b170d6.js.map",
+    "453.31867077.chunk.js.map": "/MBM/static/js/453.31867077.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d988bb0.css",
+    "static/js/main.68b170d6.js"
+  ]
+}
