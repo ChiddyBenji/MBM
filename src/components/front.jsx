@@ -24,6 +24,7 @@ function Front() {
   };
 
   return (
+    <section id="who">
     <div className="content-front">
       <div className="content-logo-front">
         <img src={logo} alt="Logo de l'entreprise" />
@@ -49,6 +50,7 @@ function Front() {
         />
       </div>
     </div>
+    </section>
   );
 }
 

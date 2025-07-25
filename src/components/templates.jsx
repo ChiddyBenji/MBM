@@ -48,7 +48,7 @@ function Template() {
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const visible = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
-      const scaleFactor = 1 + (visible / windowHeight) * 0.015;
+      const scaleFactor = 0.9 + (visible / windowHeight) * 0.1;
       setScrollScale(scaleFactor);
     };
 
@@ -101,6 +101,7 @@ function Template() {
   };
 
   return (
+    <section id="template">
     <div className="content-templates" ref={containerRef}>
       <div className="column-templates-one">
         <div>
@@ -173,6 +174,7 @@ function Template() {
         </div>
       )}
     </div>
+    </section>
   );
 }
 

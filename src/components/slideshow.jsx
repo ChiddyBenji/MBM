@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import "../styles/App.scss";
 import fox from "../assets/fox.jpg";
 import cat from "../assets/cat.jpg";
 import dog from "../assets/dog.jpg";
@@ -84,6 +83,7 @@ function Slideshow() {
   };
 
   return (
+    <section id="what">
     <div className="content-slideshow">
       <div className="content-txt-slideshow">
         <div className="content-para-slideshow">
@@ -148,6 +148,7 @@ function Slideshow() {
         </div>
       </div>
     </div>
+    </section>
   );
 }
 

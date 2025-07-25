@@ -28,7 +28,6 @@
   border-radius: 2px;
 }
 
-
 .content-who {
   height: 100vh;
   @include flex;
@@ -51,7 +50,7 @@ body {
   transition: background-color 0.3s ease-in-out;
   &.scrolled {
     background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
   }
   .content-logo {
     @include flex(start);
@@ -131,6 +130,7 @@ body {
   @include flex-center;
   height: 634px;
   background-color: #ff4500;
+  flex-direction: column;
   .content-logo-footer {
     @include auto;
     @include flex;
@@ -462,6 +462,7 @@ body {
   @include auto;
   @include flex;
   flex-direction: column;
+  margin-bottom: 14em;
 
   .content-txt-slideshow {
     @include flex(start);
@@ -602,8 +603,8 @@ body {
   @include auto;
   @include flex;
   flex-direction: column;
-  margin-top: 10em;
-  margin-bottom: 15em;
+  margin-top: 12em;
+  margin-bottom: 18em;
 
   .column-templates-one {
     @include auto;
@@ -752,7 +753,7 @@ body {
             height: 32px;
             padding: 3px;
             border: none;
-            border-radius:30px;
+            border-radius: 30px;
             font-size: 16px;
             font-family: "Helvetica Neue", sans-serif;
             cursor: pointer;
@@ -840,5 +841,370 @@ body {
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .dog {
+    width: 382px !important;
+    height: 205px !important;
+  }
+  .fox {
+    width: 382px !important;
+    height: 205px !important;
+  }
+  .cat {
+    width: 382px !important;
+    height: 205px !important;
+  }
+}
+
+// Call
+
+.content-call {
+  @include auto;
+  @include flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 22em;
+  .content-push-scroll {
+    @include auto;
+    @include flex;
+    width: 20%;
+    height: 30vh;
+    position: absolute;
+    right: -35%;
+    img {
+      text-align: center;
+    }
+  }
+  .content-callfirst {
+    @include auto;
+    @include flex;
+    flex-wrap: wrap;
+    width: 65%;
+    position: relative;
+    .txt-firtcall {
+      @include auto;
+      @include flex(center, start);
+      width: 30%;
+      height: 60vh;
+      font-size: 38px;
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+    .img-call {
+      @include auto;
+      @include flex(center, start);
+      width: 40%;
+      height: 60vh;
+      img {
+        width: 592px;
+        height: 492px;
+        animation: bounce 3s ease-in-out infinite;
+      }
+    }
+    .txt-secondcall {
+      @include auto;
+      @include flex(center, start);
+      width: 30%;
+      height: 60vh;
+      font-size: 38px;
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 500;
+      margin-bottom: 0;
+      p {
+        margin-top: 2em;
+      }
+    }
+  }
+  .content-callsecond {
+    @include auto;
+    @include flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    width: 100%;
+    height: 25vh;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 2em;
+    .one {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: linear-gradient(0deg, #fff, #e2e2e2, #fff);
+      border: 2px solid transparent;
+      position: relative;
+      z-index: 1;
+      font-size: 12px; // ou ce que tu veux
+      color: #707070;
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 200;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #ffffff;
+        z-index: -1;
+        padding: 2px;
+        box-sizing: border-box;
+      }
+
+      &.active {
+        background-color: #000;
+        color: #fff;
+
+        &::before {
+          background: #000;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+    p {
+      font-weight: 300;
+      font-size: 18px;
+      text-align: center;
+    }
+    .scroll-horizon {
+      position: relative;
+      left: 25%;
+      width: 50%; // moitié droite seulement
+      height: 2px;
+      background-color: #e0e0e0;
+      margin-top: 2em;
+      transform: translateX(0); // pas besoin de centrer avec translate
+      overflow: hidden;
+
+      .progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: #000;
+        transition: width 0.5s ease;
+        width: 0;
+      }
+    }
+  }
+}
+
+// FORM COMPONENT
+
+.content-form {
+  @include auto;
+  @include flex;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  .form-one {
+    @include auto;
+    @include flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 50%;
+    height: 100vh;
+    padding-left: 3em;
+
+    // Project Intro
+    .content-project {
+      h2 {
+        font-size: 30px;
+        font-family: "PP Neue Montreal", sans-serif;
+        font-weight: 500;
+        margin-bottom: 0.5em;
+      }
+
+      p {
+        margin: 0;
+
+        span {
+          font-size: 20px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    // Availability & Contact
+    .content-disponiblite {
+      margin-top: 2em;
+
+      .disponiblite,
+      .us-contact {
+        p {
+          font-size: 14px;
+          font-weight: 300;
+          text-transform: uppercase;
+          margin-bottom: 0;
+        }
+
+        h3 {
+          margin-top: 0.3em;
+          font-weight: 600;
+          font-size: 20px;
+        }
+      }
+
+      .disponiblite h3 {
+        margin-bottom: 1.5em;
+      }
+
+      .us-contact h3 {
+        margin-bottom: 0.5em;
+
+        a {
+          display: inline-block;
+          text-decoration: none;
+          color: inherit;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &:focus {
+            outline: 2px solid black;
+            outline-offset: 2px;
+          }
+        }
+      }
+
+      // Socials
+      .us-social {
+        margin-top: 2em;
+
+        p {
+          font-size: 14px;
+          font-weight: 300;
+          text-transform: uppercase;
+          margin-bottom: 0.5em;
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            font-weight: 500;
+            margin-bottom: 0.3em;
+
+            a {
+              text-decoration: none;
+              color: inherit;
+              font-weight: 600;
+
+              &:hover {
+                text-decoration: underline;
+              }
+
+              &:focus {
+                outline: 2px solid black;
+                outline-offset: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .form-two {
+    @include auto;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6em 4em 4em 6em;
+
+    .email-template {
+      font-family: "PP Neue Montreal", sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      width: 100%;
+      color: #181818;
+      line-height: 1.6em;
+      p {
+        margin: 0;
+        margin-bottom: 1em;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        display: inline;
+        font: inherit;
+        border: none;
+        background: none;
+        color: #1a1a1a;
+        text-align: center;
+      }
+
+      input::placeholder {
+        color: #999;
+      }
+
+      input:focus {
+        outline: none;
+        border-bottom: 1px solid #ff4500;
+      }
+
+      .content-radio-list {
+        @include flex;
+        @include auto;
+        width: 100%;
+        height: 30vh;
+        p {
+          @include flex;
+          justify-content: start;
+          align-items: start;
+          width: 30%;
+          height: 100%;
+          margin-top: 6vh;
+        }
+
+        .radio-list {
+          list-style: none;
+          padding: 0;
+          margin: 1em 0 2em 0;
+          width: 70%;
+          li {
+            margin-bottom: 0.4em;
+
+            .radio-item {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.4em;
+              font-weight: 300;
+              cursor: pointer;
+
+              input {
+                display: none;
+              }
+
+              .custom-radio {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #ccc;
+                transition: background-color 0.2s ease;
+              }
+
+              input:checked + .custom-radio {
+                background-color: #ff4500;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

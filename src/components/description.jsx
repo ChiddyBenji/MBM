@@ -12,6 +12,7 @@ function Description() {
   ];
 
   return (
+    <section id="how">
     <div className="content-description">
       <div className="content-txt-description">
         <h2>
@@ -37,6 +38,7 @@ function Description() {
         </div>
       </div>
     </div>
+    </section>
   );
 }
 
