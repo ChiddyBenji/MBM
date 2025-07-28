@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MBM/static/css/main.28481390.css",
-    "main.js": "/MBM/static/js/main.37a5eafc.js",
+    "main.css": "/MBM/static/css/main.d40b660e.css",
+    "main.js": "/MBM/static/js/main.a388fcae.js",
     "static/js/453.31867077.chunk.js": "/MBM/static/js/453.31867077.chunk.js",
     "static/media/call.png": "/MBM/static/media/call.1e621215c019c26bfed3.png",
     "static/media/cat.jpg": "/MBM/static/media/cat.89d9f80f43cebd7ebd0f.jpg",
@@ -10,12 +10,12 @@
     "static/media/ppneuemontreal-medium.otf": "/MBM/static/media/ppneuemontreal-medium.0f34f4714f1b26e0dedc.otf",
     "static/media/ecrou.png": "/MBM/static/media/ecrou.b7b6c5e00d4821afbef2.png",
     "index.html": "/MBM/index.html",
-    "main.28481390.css.map": "/MBM/static/css/main.28481390.css.map",
-    "main.37a5eafc.js.map": "/MBM/static/js/main.37a5eafc.js.map",
+    "main.d40b660e.css.map": "/MBM/static/css/main.d40b660e.css.map",
+    "main.a388fcae.js.map": "/MBM/static/js/main.a388fcae.js.map",
     "453.31867077.chunk.js.map": "/MBM/static/js/453.31867077.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.28481390.css",
-    "static/js/main.37a5eafc.js"
+    "static/css/main.d40b660e.css",
+    "static/js/main.a388fcae.js"
   ]
 }
