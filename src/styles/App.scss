@@ -40,7 +40,6 @@
   cursor: pointer;
 }
 
-
 body {
   overflow-x: hidden;
 }
@@ -299,6 +298,7 @@ body {
   @include auto;
   @include flex;
   .content-txt-description {
+    opacity: 0;
     @include flex(start, start);
     flex-direction: column;
     width: 50%;
@@ -318,6 +318,7 @@ body {
     }
   }
   .content-dropdown-description {
+    opacity: 0;
     @include flex(start, start);
     width: 50%;
     height: 85vh;
@@ -464,6 +465,36 @@ body {
   }
 }
 
+.fade-left {
+  animation: fadeLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fade-right {
+  animation: fadeRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 // Slideshow
 
 .content-slideshow {
@@ -476,7 +507,7 @@ body {
     @include flex(start);
     @include auto;
     height: 20vh;
-
+    opacity: 0;
     .content-para-slideshow {
       padding-left: 3em;
 
@@ -503,7 +534,7 @@ body {
     height: 650px;
     margin-top: 1em;
     overflow-x: hidden;
-
+    opacity: 0;
     .content-cards-slideshow {
       width: 960px;
       height: 620px;
@@ -584,7 +615,7 @@ body {
       @include auto;
       @include flex;
       height: 10em;
-      margin-bottom: 2em;
+      
       gap: 0.5em;
       z-index: 5;
 
@@ -613,7 +644,7 @@ body {
   flex-direction: column;
   margin-top: 12em;
   margin-bottom: 18em;
-
+  opacity: 0;
   .column-templates-one {
     @include auto;
     display: grid;
@@ -867,6 +898,23 @@ body {
   }
 }
 
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // Call
 
 .content-call {
@@ -901,12 +949,16 @@ body {
       font-family: "PP Neue Montreal", sans-serif;
       font-weight: 500;
       margin-bottom: 0;
+      p {
+        opacity: 0;
+      }
     }
     .img-call {
       @include auto;
       @include flex(center, start);
       width: 40%;
       height: 60vh;
+      opacity: 0;
       img {
         width: 592px;
         height: 492px;
@@ -924,6 +976,7 @@ body {
       margin-bottom: 0;
       p {
         margin-top: 2em;
+        opacity: 0;
       }
     }
   }
@@ -935,7 +988,6 @@ body {
     width: 100%;
     height: 25vh;
     flex-direction: column;
-    position: relative;
     margin-bottom: 2em;
     .one {
       display: flex;
@@ -1024,7 +1076,7 @@ body {
     width: 50%;
     height: 100vh;
     padding-left: 3em;
-
+    opacity: 0;
     // Project Intro
     .content-project {
       h2 {
@@ -1133,7 +1185,7 @@ body {
     display: flex;
     align-items: center;
     padding: 6em 4em 4em 6em;
-
+    opacity: 0;
     .email-template {
       font-family: "PP Neue Montreal", sans-serif;
       font-size: 20px;

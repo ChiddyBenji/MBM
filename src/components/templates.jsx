@@ -41,14 +41,16 @@ function Template() {
   const [zoomImg, setZoomImg] = useState(null);
   const [scrollScale, setScrollScale] = useState(1);
   const containerRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
+      const currentRef = containerRef.current;
+      if (!currentRef) return;
+      const rect = currentRef.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const visible = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
-      const scaleFactor = 0.9 + (visible / windowHeight) * 0.1;
+      const visibleAmount = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
+      const scaleFactor = 0.9 + (visibleAmount / windowHeight) * 0.1;
       setScrollScale(scaleFactor);
     };
 
@@ -58,10 +60,23 @@ function Template() {
       }
     };
 
+    const currentRef = containerRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (currentRef) observer.observe(currentRef);
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      if (currentRef) observer.unobserve(currentRef);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -102,78 +117,81 @@ function Template() {
 
   return (
     <section id="template">
-    <div className="content-templates" ref={containerRef}>
-      <div className="column-templates-one">
-        <div>
-          {imageGroups.group1.map((img, i) => (
-            <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
-          ))}
-        </div>
-        <div>
-          <div className="content-templates-img">
-            {imageGroups.group2.map((img, i) => (
+      <div
+        className={`content-templates ${visible ? "fade-in-section" : ""}`}
+        ref={containerRef}
+      >
+        <div className="column-templates-one">
+          <div>
+            {imageGroups.group1.map((img, i) => (
               <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
             ))}
           </div>
-          <p className="texte">
-            Des blueprints web intemporels, <br /> prêts à l’emploi.
-          </p>
+          <div>
+            <div className="content-templates-img">
+              {imageGroups.group2.map((img, i) => (
+                <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+              ))}
+            </div>
+            <p className="texte">
+              Des blueprints web intemporels, <br /> prêts à l’emploi.
+            </p>
+          </div>
+          <div>
+            {imageGroups.group3.map((img, i) => (
+              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+            ))}
+          </div>
         </div>
-        <div>
-          {imageGroups.group3.map((img, i) => (
-            <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
-          ))}
-        </div>
-      </div>
 
-      <div className="column-templates-two">
-        <div>
-          {imageGroups.group4.map((img, i) => (
-            <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
-          ))}
-        </div>
+        <div className="column-templates-two">
+          <div>
+            {imageGroups.group4.map((img, i) => (
+              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+            ))}
+          </div>
 
-        <div>
-          <div className="content-img-one">
-            <div>
-              <div className="txt-dispo">Disponible sur</div>
-              <div className="icon-txt">
-                {iconTemplate.map((icon, index) => (
-                  <img
-                    key={index}
-                    src={icon.src}
-                    alt={icon.alt}
-                    width={40}
-                    height={40}
-                  />
-                ))}
+          <div>
+            <div className="content-img-one">
+              <div>
+                <div className="txt-dispo">Disponible sur</div>
+                <div className="icon-txt">
+                  {iconTemplate.map((icon, index) => (
+                    <img
+                      key={index}
+                      src={icon.src}
+                      alt={icon.alt}
+                      width={40}
+                      height={40}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <button className="btn-disco">Découvrez nos templates</button>
               </div>
             </div>
-            <div>
-              <button className="btn-disco">Découvrez nos templates</button>
+
+            <div className="content-img-two">
+              <TiltImage className="dog" src={dog} alt="dog" onClick={() => setZoomImg(dog)} scale={scrollScale} />
             </div>
           </div>
 
-          <div className="content-img-two">
-            <TiltImage className="dog" src={dog} alt="dog" onClick={() => setZoomImg(dog)} scale={scrollScale} />
+          <div>
+            {imageGroups.group5.map((img, i) => (
+              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+            ))}
           </div>
         </div>
 
-        <div>
-          {imageGroups.group5.map((img, i) => (
-            <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
-          ))}
-        </div>
+        {zoomImg && (
+          <div className="modal-overlay" onClick={() => setZoomImg(null)}>
+            <div className="modal-content">
+              <img src={zoomImg} alt="Zoomed template" />
+            </div>
+          </div>
+        )}
       </div>
-
-      {zoomImg && (
-        <div className="modal-overlay" onClick={() => setZoomImg(null)}>
-          <div className="modal-content">
-            <img src={zoomImg} alt="Zoomed template" />
-          </div>
-        </div>
-      )}
-    </div>
     </section>
   );
 }

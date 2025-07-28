@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import fox from "../assets/fox.jpg";
 import cat from "../assets/cat.jpg";
 import dog from "../assets/dog.jpg";
@@ -27,6 +27,9 @@ const slideshowData = [
 function Slideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const dragStartX = useRef(null);
+  const txtRef = useRef(null);
+  const slideRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -82,72 +85,98 @@ function Slideshow() {
     dragStartX.current = null;
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    const element = txtRef.current;
+    if (element) observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   return (
     <section id="what">
-    <div className="content-slideshow">
-      <div className="content-txt-slideshow">
-        <div className="content-para-slideshow">
-          <h2>Des structures solides, habillées avec intention.</h2>
-          <p>Explorez nos réalisations — où chaque interaction a un but.</p>
+      <div className="content-slideshow">
+        <div
+          ref={txtRef}
+          className={`content-txt-slideshow ${visible ? "fade-left" : ""}`}
+        >
+          <div className="content-para-slideshow">
+            <h2>Des structures solides, habillées avec intention.</h2>
+            <p>Explorez nos réalisations — où chaque interaction a un but.</p>
+          </div>
         </div>
-      </div>
 
-      <div
-        className="slideshow"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="content-cards-slideshow">
-          {slideshowData.map((item, index) => {
-            const position =
-              index === currentIndex
-                ? "active"
-                : index === (currentIndex + 1) % slideshowData.length
-                ? "next"
-                : index ===
-                  (currentIndex - 1 + slideshowData.length) %
-                    slideshowData.length
-                ? "prev"
-                : "";
+        <div
+          ref={slideRef}
+          className={`slideshow ${visible ? "fade-right" : ""}`}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="content-cards-slideshow">
+            {slideshowData.map((item, index) => {
+              const position =
+                index === currentIndex
+                  ? "active"
+                  : index === (currentIndex + 1) % slideshowData.length
+                  ? "next"
+                  : index ===
+                    (currentIndex - 1 + slideshowData.length) %
+                      slideshowData.length
+                  ? "prev"
+                  : "";
 
-            return (
+              return (
+                <div
+                  key={index}
+                  className={`slide ${position}`}
+                  onClick={() => {
+                    if (position === "next") {
+                      nextSlide();
+                    } else if (position === "prev") {
+                      prevSlide();
+                    }
+                  }}
+                >
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="slide-img"
+                  />
+                  <div className="slide-text">
+                    <h2>{item.title}</h2>
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="content-indentation">
+            {slideshowData.map((_, index) => (
               <div
                 key={index}
-                className={`slide ${position}`}
-                onClick={() => {
-                  if (position === "next") {
-                    nextSlide();
-                  } else if (position === "prev") {
-                    prevSlide();
-                  }
-                }}
-              >
-                <img src={item.img} alt={item.title} className="slide-img" />
-                <div className="slide-text">
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="content-indentation">
-          {slideshowData.map((_, index) => (
-            <div
-              key={index}
-              className={`indentation ${
-                index === currentIndex ? "active" : ""
-              }`}
-            ></div>
-          ))}
+                className={`indentation ${
+                  index === currentIndex ? "active" : ""
+                }`}
+              ></div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </section>
   );
 }

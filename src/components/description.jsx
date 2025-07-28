@@ -1,7 +1,12 @@
 import "../styles/App.scss";
 import Dropdown from "../components/dropdown";
+import { useEffect, useRef, useState } from "react";
 
 function Description() {
+  const txtRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
   const txtdescription = [
     "Pourquoi choisir un design",
     "intemporel moderne et efficace ?",
@@ -11,33 +16,61 @@ function Description() {
     "Conçus pour durer, s'adapter et rester attractifs.",
   ];
 
+  useEffect(() => {
+  const txtElement = txtRef.current;
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  if (txtElement) observer.observe(txtElement);
+
+  return () => {
+    if (txtElement) observer.unobserve(txtElement);
+  };
+}, []);
+
+
   return (
     <section id="how">
-    <div className="content-description">
-      <div className="content-txt-description">
-        <h2>
-          {txtdescription.map((line, index) => (
-            <span key={index}>
-              {line}
-              {index !== txtdescription.length - 1 && <br />}
-            </span>
-          ))}
-        </h2>
-        <p>
-          {p.map((line, index) => (
-            <span key={index}>
-              {line}
-              {index !== p.length - 1 && <br />}
-            </span>
-          ))}
-        </p>
-      </div>
-      <div className="content-dropdown-description">
-        <div className="content-dropdown">
+      <div className="content-description">
+        <div
+          ref={txtRef}
+          className={`content-txt-description ${visible ? "fade-left" : ""}`}
+        >
+          <h2>
+            {txtdescription.map((line, index) => (
+              <span key={index}>
+                {line}
+                {index !== txtdescription.length - 1 && <br />}
+              </span>
+            ))}
+          </h2>
+          <p>
+            {p.map((line, index) => (
+              <span key={index}>
+                {line}
+                {index !== p.length - 1 && <br />}
+              </span>
+            ))}
+          </p>
+        </div>
+
+        <div
+          ref={dropdownRef}
+          className={`content-dropdown-description ${
+            visible ? "fade-right" : ""
+          }`}
+        >
+          <div className="content-dropdown">
             <Dropdown />
+          </div>
         </div>
       </div>
-    </div>
     </section>
   );
 }

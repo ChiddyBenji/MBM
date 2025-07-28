@@ -1,70 +1,109 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import call from "../assets/call.png";
 import ecrou from "../assets/ecrou.png";
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.15,
-      duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 function Call({ step }) {
   const progress = (step / 3) * 100;
+  const pLeftRef = useRef(null);
+  const pRightRef = useRef(null);
+  const imgRef = useRef(null);
+
+  const [fadeLeft, setFadeLeft] = useState(false);
+  const [fadeRight, setFadeRight] = useState(false);
+  const [fadeUp, setFadeUp] = useState(false);
+
+  useEffect(() => {
+    const el = pLeftRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setFadeLeft(true);
+      },
+      { threshold: 0.4 }
+    );
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = pRightRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setFadeRight(true);
+      },
+      { threshold: 0.4 }
+    );
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = imgRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setFadeUp(true);
+      },
+      { threshold: 0.4 }
+    );
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, []);
 
   return (
     <section id="plans">
-    <div className="content-call">
-      <motion.div
-        className="content-callfirst"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div className="txt-firtcall" variants={itemVariants}>
-          <p>
-            Un parcours clair,
-            <br />
-            de l'idée
-          </p>
-        </motion.div>
-        <motion.div className="img-call" variants={itemVariants}>
-          <img src={call} alt="smartphone" />
-        </motion.div>
-        <motion.div className="txt-secondcall" variants={itemVariants}>
-          <p>à la mise en ligne.</p>
-        </motion.div>
-        <motion.div className="content-push-scroll" variants={itemVariants}>
-          <img src={ecrou} alt="" />
-        </motion.div>
-      </motion.div>
+      <div className="content-call">
+        <div className="content-callfirst">
+          <div className="txt-firtcall">
+            <p ref={pLeftRef} className={fadeLeft ? "fade-left" : ""}>
+              Un parcours clair,
+              <br />
+              de l'idée
+            </p>
+          </div>
 
-      <div className="content-callsecond">
-        <div className="one">
-          <p>1</p>
+          <div
+            className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
+            ref={imgRef}
+          >
+            <img src={call} alt="smartphone" />
+          </div>
+
+          <div className="txt-secondcall">
+            <p ref={pRightRef} className={fadeRight ? "fade-right" : ""}>
+              à la mise en ligne.
+            </p>
+          </div>
+
+          <div className="content-push-scroll">
+            <img src={ecrou} alt="scroll icon" />
+          </div>
         </div>
-        <h2>Exploration (Call #1)</h2>
-        <p>
-          Écoute active → définition de vos objectifs et <br /> contraintes
-          techniques.
-        </p>
-        <div className="scroll-horizon">
-          <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+
+        <div className="content-callsecond">
+          <div className="one">
+            <p>1</p>
+          </div>
+          <h2>Exploration (Call #1)</h2>
+          <p>
+            Écoute active → définition de vos objectifs et <br /> contraintes
+            techniques.
+          </p>
+          <div className="scroll-horizon">
+            <div
+              className="progress-bar"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
         </div>
       </div>
-    </div>
     </section>
   );
 }
