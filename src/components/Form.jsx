@@ -64,7 +64,9 @@ function Form() {
             <p>
               <span>Pas de formulaire générique. Décrivez votre besoin en</span>{" "}
               <br />
-              <span>quelques lignes, nous revenons vers vous avec une</span>{" "}
+              <span>
+                quelques lignes, nous revenons vers vous avec une
+              </span>{" "}
               <br />
               <span>proposition concrète.</span>
             </p>
@@ -172,6 +174,18 @@ function Form() {
               <input type="text" size="6" placeholder="votre nom" required />
               ).
             </p>
+            <button
+              type="submit"
+              onClick={() => {
+                const subject = "Demande de projet MB Studio";
+                const body = encodeURIComponent(
+                  "Bonjour MB Studio,\n\nJe vous contacte via le formulaire de votre site."
+                );
+                window.location.href = `mailto:larade.benjamin@gmail.com?subject=${subject}&body=${body}`;
+              }}
+            >
+              Envoyer
+            </button>
           </form>
         </section>
       </div>
