@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"; // ✅ plus de HashRouter ici
 import "../styles/App.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import DropArrow from "../components/droparrow";
 import Front from "../components/front";
-
 import Description from "../components/description";
 import Slideshow from "../components/slideshow";
 import Template from "../components/templates";
@@ -13,7 +12,7 @@ import ScrollStepsContainer from "../components/ScrollStepsContainer";
 
 function App() {
   return (
-    <Router>
+    <>
       <Header />
       <Routes>
         <Route
@@ -32,7 +31,7 @@ function App() {
       </Routes>
       <Footer />
       <DropArrow />
-    </Router>
+    </>
   );
 }
 

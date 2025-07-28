@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/App.scss";
 import logo from "../assets/logo.png";
 
@@ -6,6 +7,7 @@ function Header() {
   const buttons = ["Who", "How", "What", "Template", "Plans"];
   const [activeButton, setActiveButton] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   const handleButtonClick = (index, id) => {
     setActiveButton(index);
@@ -27,9 +29,17 @@ function Header() {
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="content-logo">
-        <a href="#top" onClick={() => setActiveButton(null)}>
+        <button
+          onClick={() => {
+            setActiveButton(null);
+            navigate("/"); // redirige vers la page d'accueil
+            window.scrollTo({ top: 0, behavior: "smooth" }); // scroll en haut
+          }}
+          className="logo-button"
+          aria-label="Retour à l’accueil"
+        >
           <img src={logo} alt="Logo" className="logo" />
-        </a>
+        </button>
       </div>
 
       <div className="content-link">
@@ -53,7 +63,7 @@ function Header() {
           className="contact-button"
           aria-label="Contact"
           onClick={() => {
-            setActiveButton(null); // Réinitialise le bouton actif
+            setActiveButton(null);
             const section = document.getElementById("form");
             if (section) section.scrollIntoView({ behavior: "smooth" });
           }}
