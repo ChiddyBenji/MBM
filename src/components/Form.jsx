@@ -16,9 +16,26 @@ function Form() {
     { id: "brief", label: "un brief clair", checked: false },
   ];
 
+  const [formData, setFormData] = useState({
+    nom1: "",
+    besoin1: "",
+    besoin2: "",
+    entreprise: "",
+    deja: dejaItems.reduce((acc, item) => {
+      acc[item.id] = item.checked;
+      return acc;
+    }, {}),
+    budget: "",
+    delai: "",
+    contactMoyen: "",
+    email: "",
+    nom2: "",
+  });
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
   const leftRef = useRef(null);
   const rightRef = useRef(null);
-
   const [fadeLeft, setFadeLeft] = useState(false);
   const [fadeRight, setFadeRight] = useState(false);
 
@@ -31,10 +48,7 @@ function Form() {
       { threshold: 0.4 }
     );
     if (el) observer.observe(el);
-
-    return () => {
-      if (el) observer.unobserve(el);
-    };
+    return () => el && observer.unobserve(el);
   }, []);
 
   useEffect(() => {
@@ -46,28 +60,65 @@ function Form() {
       { threshold: 0.4 }
     );
     if (el) observer.observe(el);
-
-    return () => {
-      if (el) observer.unobserve(el);
-    };
+    return () => el && observer.unobserve(el);
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (id) => {
+    setFormData((prev) => ({
+      ...prev,
+      deja: {
+        ...prev.deja,
+        [id]: !prev.deja[id],
+      },
+    }));
+  };
+
+  const validateForm = () => {
+    const requiredFields = ["nom1", "email", "nom2"];
+    return requiredFields.every((field) => formData[field].trim() !== "");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      alert("Merci de remplir tous les champs obligatoires.");
+      return;
+    }
+
+    const checkedItems = Object.entries(formData.deja)
+      .filter(([_, val]) => val)
+      .map(([key]) => `- ${dejaItems.find((item) => item.id === key)?.label}`)
+      .join("\n");
+
+    const body = `Bonjour MB Studio,\n\nJe m'appelle ${formData.nom1}. Je vous contacte parce que j’ai besoin de ${formData.besoin1} et ${formData.besoin2} pour ${formData.entreprise}.\n\nJ’ai déjà :\n${checkedItems}\n\nMon budget est de ${formData.budget}, et j’aimerais lancer le projet dans ${formData.delai}.\nVous pouvez me contacter par ${formData.contactMoyen} à ${formData.email}.\n\nÀ bientôt, ${formData.nom2}.`;
+
+    window.open(
+      `mailto:mbstudio@gmail.com?subject=Demande de projet MB Studio&body=${encodeURIComponent(
+        body
+      )}`,
+      "_blank"
+    );
+
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), 2000);
+  };
 
   return (
     <section id="form">
       <div className="content-form">
-        <div
-          className={`form-one ${fadeLeft ? "fade-left" : ""}`}
-          ref={leftRef}
-        >
+        <div className={`form-one ${fadeLeft ? "fade-left" : ""}`} ref={leftRef}>
           <div className="content-project">
             <h2>Parlez-nous de votre projet.</h2>
             <p>
-              <span>Pas de formulaire générique. Décrivez votre besoin en</span>{" "}
-              <br />
+              <span>Pas de formulaire générique. Décrivez votre besoin en</span> <br />
               <span>
                 quelques lignes, nous revenons vers vous avec une
-              </span>{" "}
-              <br />
+              </span> <br />
               <span>proposition concrète.</span>
             </p>
           </div>
@@ -105,32 +156,47 @@ function Form() {
           </div>
         </div>
 
-        <section
-          className={`form-two ${fadeRight ? "fade-right" : ""}`}
-          ref={rightRef}
-        >
-          <form className="email-template" onSubmit={(e) => e.preventDefault()}>
+        <section className={`form-two ${fadeRight ? "fade-right" : ""}`} ref={rightRef}>
+          <form className="email-template" onSubmit={handleSubmit}>
             <p>Bonjour MB Studio,</p>
 
             <p>
               Je m’appelle (
-              <input type="text" size="6" placeholder=" votre nom " required />
+              <input
+                type="text"
+                name="nom1"
+                size="6"
+                placeholder=" votre nom "
+                value={formData.nom1}
+                onChange={handleInputChange}
+                required
+              />
               ). Je vous contacte parce que j’ai besoin de <br /> (
               <input
                 type="text"
+                name="besoin1"
                 size="16"
                 placeholder=" designer et développeur"
+                value={formData.besoin1}
+                onChange={handleInputChange}
               />
               ) et (
-              <input type="text" size="8" placeholder=" e-commerce" />) pour{" "}
-              <br />
-              (
               <input
                 type="text"
+                name="besoin2"
+                size="8"
+                placeholder=" e-commerce"
+                value={formData.besoin2}
+                onChange={handleInputChange}
+              />) pour <br /> (
+              <input
+                type="text"
+                name="entreprise"
                 size="24"
                 placeholder=" mon entreprise de vente de fixie gear en ligne "
-              />
-              ).
+                value={formData.entreprise}
+                onChange={handleInputChange}
+              />).
             </p>
             <div className="content-radio-list">
               <p>J’ai déjà :</p>
@@ -142,7 +208,8 @@ function Form() {
                       <input
                         type="checkbox"
                         name={item.id}
-                        defaultChecked={item.checked}
+                        checked={formData.deja[item.id]}
+                        onChange={() => handleCheckboxChange(item.id)}
                       />
                       <span className="custom-radio" />
                       <span className="radio-label">{item.label}</span>)
@@ -154,38 +221,67 @@ function Form() {
 
             <p>
               Mon budget est de (
-              <input type="text" size="11" placeholder="EUR 2500-5000" />
+              <input
+                type="text"
+                name="budget"
+                size="11"
+                placeholder="EUR 2500-5000"
+                value={formData.budget}
+                onChange={handleInputChange}
+              />
               ), et j’aimerais lancer le <br /> projet dans (
-              <input type="text" size="6" placeholder="2 à 6 mois" />
-              ). <br /> Vous pouvez me contacter par (
-              <input type="text" size="3" placeholder="email" />) à <br />
-              (
+              <input
+                type="text"
+                name="delai"
+                size="6"
+                placeholder="2 à 6 mois"
+                value={formData.delai}
+                onChange={handleInputChange}
+              />). <br /> Vous pouvez me contacter par (
+              <input
+                type="text"
+                name="contactMoyen"
+                size="3"
+                placeholder="email"
+                value={formData.contactMoyen}
+                onChange={handleInputChange}
+              />) à <br /> (
               <input
                 type="email"
+                name="email"
                 size="16"
                 placeholder="votremail@domaine.com"
+                value={formData.email}
+                onChange={handleInputChange}
                 required
-              />
-              ).
+              />).
             </p>
 
             <p>
               À bientôt, (
-              <input type="text" size="6" placeholder="votre nom" required />
-              ).
+              <input
+                type="text"
+                name="nom2"
+                size="6"
+                placeholder="votre nom"
+                value={formData.nom2}
+                onChange={handleInputChange}
+                required
+              />).
             </p>
-            <button
-              type="submit"
-              onClick={() => {
-                const subject = "Demande de projet MB Studio";
-                const body = encodeURIComponent(
-                  "Bonjour MB Studio,\n\nJe vous contacte via le formulaire de votre site."
-                );
-                window.location.href = `mailto:larade.benjamin@gmail.com?subject=${subject}&body=${body}`;
-              }}
-            >
-              Envoyer
-            </button>
+            <button type="submit">Envoyer</button>
+            {showConfirmation && (
+              <p
+                className="confirmation-message"
+                style={{
+                  color: "#2ecc71",
+                  animation: "fadeInUp 0.4s ease-in-out",
+                  transition: "opacity 0.4s ease, transform 0.4s ease",
+                }}
+              >
+                Votre message est prêt à être envoyé via votre messagerie.
+              </p>
+            )}
           </form>
         </section>
       </div>

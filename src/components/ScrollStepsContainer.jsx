@@ -62,6 +62,24 @@ function ScrollStepsContainer() {
     };
   }, [handleScroll]);
 
+  // 🔁 Écoute de l'événement pour reset et scroll vers l'ancre
+  useEffect(() => {
+    const handleResetStep = (e) => {
+      setStep(1);
+      setTimeout(() => {
+        const section = document.getElementById(e.detail);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 10);
+    };
+
+    window.addEventListener("resetStepToOne", handleResetStep);
+    return () => {
+      window.removeEventListener("resetStepToOne", handleResetStep);
+    };
+  }, []);
+
   const CurrentStep = step === 1 ? Call : step === 2 ? Step2 : Step3;
 
   return (

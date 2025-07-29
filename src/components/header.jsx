@@ -11,9 +11,15 @@ function Header() {
 
   const handleButtonClick = (index, id) => {
     setActiveButton(index);
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+
+    if (id === "plans") {
+      // Émet un événement personnalisé pour déclencher la remise à zéro et le scroll
+      window.dispatchEvent(new CustomEvent("resetStepToOne", { detail: id }));
+    } else {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -32,8 +38,8 @@ function Header() {
         <button
           onClick={() => {
             setActiveButton(null);
-            navigate("/"); // redirige vers la page d'accueil
-            window.scrollTo({ top: 0, behavior: "smooth" }); // scroll en haut
+            navigate("/");
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           className="logo-button"
           aria-label="Retour à l’accueil"
