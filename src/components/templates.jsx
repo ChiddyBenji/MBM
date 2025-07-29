@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import webflow from "../assets/webflow.png";
 import zed from "../assets/zed.png";
 import wix from "../assets/wix.png";
@@ -7,6 +8,26 @@ import wordpress from "../assets/wordpress.png";
 import fox from "../assets/fox.jpg";
 import cat from "../assets/cat.jpg";
 import dog from "../assets/dog.jpg";
+
+// 🔁 Composant Modale via React Portal
+function Modal({ children, onClose }) {
+  return ReactDOM.createPortal(
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="modal-inner" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Fermer">
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>,
+    document.getElementById("modal-root")
+  );
+}
 
 function TiltImage({ className, src, alt, onClick, scale }) {
   const imgRef = useRef(null);
@@ -32,7 +53,11 @@ function TiltImage({ className, src, alt, onClick, scale }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={resetRotation}
       onClick={onClick}
-      style={{ cursor: "zoom-in", transform: `scale(${scale})`, transition: "transform 0.3s ease" }}
+      style={{
+        cursor: "zoom-in",
+        transform: `scale(${scale})`,
+        transition: "transform 0.3s ease",
+      }}
     />
   );
 }
@@ -44,43 +69,56 @@ function Template() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentRef = containerRef.current;
-      if (!currentRef) return;
-      const rect = currentRef.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const visibleAmount = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
-      const scaleFactor = 0.9 + (visibleAmount / windowHeight) * 0.1;
-      setScrollScale(scaleFactor);
-    };
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setZoomImg(null);
-      }
-    };
-
+  const handleScroll = () => {
     const currentRef = containerRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
+    if (!currentRef) return;
+    const rect = currentRef.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const visibleAmount = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
+    const scaleFactor = 0.9 + (visibleAmount / windowHeight) * 0.1;
+    setScrollScale(scaleFactor);
+  };
 
-    if (currentRef) observer.observe(currentRef);
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      setZoomImg(null);
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("keydown", handleKeyDown);
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+      }
+    },
+    { threshold: 0.3 }
+  );
 
+  const currentRef = containerRef.current; // ✅ variable locale pour éviter l'erreur
+
+  if (currentRef) observer.observe(currentRef);
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    if (currentRef) observer.unobserve(currentRef); // ✅ utilise la variable locale
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, []);
+
+
+  // 🔒 Bloquer le scroll pendant la modale
+  useEffect(() => {
+    if (zoomImg) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
-  }, []);
+  }, [zoomImg]);
 
   const iconTemplate = [
     { src: webflow, alt: "Webflow" },
@@ -117,20 +155,17 @@ function Template() {
 
   return (
     <section id="template">
-      <div
-        className={`content-templates ${visible ? "fade-in-section" : ""}`}
-        ref={containerRef}
-      >
+      <div className={`content-templates ${visible ? "fade-in-section" : ""}`} ref={containerRef}>
         <div className="column-templates-one">
           <div>
             {imageGroups.group1.map((img, i) => (
-              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+              <TiltImage key={i} {...img} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
             ))}
           </div>
           <div>
             <div className="content-templates-img">
               {imageGroups.group2.map((img, i) => (
-                <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+                <TiltImage key={i} {...img} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
               ))}
             </div>
             <p className="texte">
@@ -139,7 +174,7 @@ function Template() {
           </div>
           <div>
             {imageGroups.group3.map((img, i) => (
-              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+              <TiltImage key={i} {...img} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
             ))}
           </div>
         </div>
@@ -147,7 +182,7 @@ function Template() {
         <div className="column-templates-two">
           <div>
             {imageGroups.group4.map((img, i) => (
-              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+              <TiltImage key={i} {...img} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
             ))}
           </div>
 
@@ -157,13 +192,7 @@ function Template() {
                 <div className="txt-dispo">Disponible sur</div>
                 <div className="icon-txt">
                   {iconTemplate.map((icon, index) => (
-                    <img
-                      key={index}
-                      src={icon.src}
-                      alt={icon.alt}
-                      width={40}
-                      height={40}
-                    />
+                    <img key={index} src={icon.src} alt={icon.alt} width={40} height={40} />
                   ))}
                 </div>
               </div>
@@ -179,17 +208,16 @@ function Template() {
 
           <div>
             {imageGroups.group5.map((img, i) => (
-              <TiltImage key={i} className={img.className} src={img.src} alt={img.alt} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
+              <TiltImage key={i} {...img} onClick={() => setZoomImg(img.src)} scale={scrollScale} />
             ))}
           </div>
         </div>
 
+        {/* 🔥 PORTAL MODAL FIXE */}
         {zoomImg && (
-          <div className="modal-overlay" onClick={() => setZoomImg(null)}>
-            <div className="modal-content">
-              <img src={zoomImg} alt="Zoomed template" />
-            </div>
-          </div>
+          <Modal onClose={() => setZoomImg(null)}>
+            <img src={zoomImg} alt="Zoomed template" />
+          </Modal>
         )}
       </div>
     </section>
