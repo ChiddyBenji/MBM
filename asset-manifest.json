@@ -1,21 +1,39 @@
 {
   "files": {
-    "main.css": "/MBM/static/css/main.f3fa8312.css",
-    "main.js": "/MBM/static/js/main.2559e94a.js",
+    "main.css": "/MBM/static/css/main.17ff440d.css",
+    "main.js": "/MBM/static/js/main.3c9848fb.js",
     "static/js/453.31867077.chunk.js": "/MBM/static/js/453.31867077.chunk.js",
+    "static/media/tecrou.png": "/MBM/static/media/tecrou.93022cb0fb3ad4b31ab7.png",
+    "static/media/three.jpg": "/MBM/static/media/three.b0ea3ccedf8b0385325a.jpg",
+    "static/media/identity-ten.png": "/MBM/static/media/identity-ten.2ee6599e508679fc145d.png",
+    "static/media/identity-three.png": "/MBM/static/media/identity-three.ef2b20dbea7d669ef58f.png",
+    "static/media/identity-five.png": "/MBM/static/media/identity-five.3d3721f6013984a9a27c.png",
+    "static/media/identity-six.png": "/MBM/static/media/identity-six.5e28d49835d2f06c8ee5.png",
+    "static/media/identity-twelve.png": "/MBM/static/media/identity-twelve.cb61a7bf03830787e7c6.png",
+    "static/media/identity-eleven.png": "/MBM/static/media/identity-eleven.e35f78b6803900f8eedb.png",
+    "static/media/identity-four.png": "/MBM/static/media/identity-four.0d4e6c6ecd504f4c88cc.png",
+    "static/media/identity-thirteen.png": "/MBM/static/media/identity-thirteen.c94533a00e3b575edee3.png",
+    "static/media/identity-nine.png": "/MBM/static/media/identity-nine.de1a0ad8dacc36de1d78.png",
+    "static/media/identity-eight.png": "/MBM/static/media/identity-eight.5a5ad15b9ed569de0879.png",
+    "static/media/identity-seven.png": "/MBM/static/media/identity-seven.c35a3cf4b23352c05b81.png",
     "static/media/call.png": "/MBM/static/media/call.1e621215c019c26bfed3.png",
-    "static/media/cat.jpg": "/MBM/static/media/cat.89d9f80f43cebd7ebd0f.jpg",
-    "static/media/dog.jpg": "/MBM/static/media/dog.1a84c6f823aaa59cf02d.jpg",
-    "static/media/fox.jpg": "/MBM/static/media/fox.e6af929cfa320cf36126.jpg",
+    "static/media/identity-two.png": "/MBM/static/media/identity-two.a772d3e8c5de34fbecc5.png",
+    "static/media/echec.png": "/MBM/static/media/echec.b7233e5ed7980c475104.png",
+    "static/media/sugar.png": "/MBM/static/media/sugar.6421be60c3d655e2ac0f.png",
+    "static/media/identity-one.png": "/MBM/static/media/identity-one.5d3748dd0d2f1f5a467e.png",
+    "static/media/holo.png": "/MBM/static/media/holo.7cbc19e59feb1347ca33.png",
+    "static/media/dglobe.png": "/MBM/static/media/dglobe.65c08c0051651529df78.png",
+    "static/media/dcube.png": "/MBM/static/media/dcube.77b80ea0345075dae67f.png",
+    "static/media/dtriangle.png": "/MBM/static/media/dtriangle.2edc2de5fbea637f3f4e.png",
     "static/media/ppneuemontreal-medium.otf": "/MBM/static/media/ppneuemontreal-medium.0f34f4714f1b26e0dedc.otf",
     "static/media/ecrou.png": "/MBM/static/media/ecrou.b7b6c5e00d4821afbef2.png",
     "index.html": "/MBM/index.html",
-    "main.f3fa8312.css.map": "/MBM/static/css/main.f3fa8312.css.map",
-    "main.2559e94a.js.map": "/MBM/static/js/main.2559e94a.js.map",
+    "main.17ff440d.css.map": "/MBM/static/css/main.17ff440d.css.map",
+    "main.3c9848fb.js.map": "/MBM/static/js/main.3c9848fb.js.map",
     "453.31867077.chunk.js.map": "/MBM/static/js/453.31867077.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f3fa8312.css",
-    "static/js/main.2559e94a.js"
+    "static/css/main.17ff440d.css",
+    "static/js/main.3c9848fb.js"
   ]
 }
