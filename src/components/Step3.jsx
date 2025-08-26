@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import call from "../assets/call.png";
+import tecrou from "../assets/tecrou.png";
+
 
 function Step3({ step }) {
   const progress = (step / 3) * 100;
@@ -69,7 +70,7 @@ function Step3({ step }) {
           className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
           ref={imgRef}
         >
-          <img src={call} alt="smartphone" />
+          <img src={tecrou} alt="sphere" />
         </div>
         <div className="txt-secondcall">
           <p ref={pRightRef} className={fadeRight ? "fade-right" : ""}>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import call from "../assets/call.png";
 import ecrou from "../assets/ecrou.png";
+import holo from "../assets/holo.png";
 
 function Step2({ step }) {
   const progress = (step / 3) * 100;
@@ -71,7 +71,7 @@ function Step2({ step }) {
           className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
           ref={imgRef}
         >
-          <img src={call} alt="smartphone" />
+          <img src={holo} alt="holographique" />
         </div>
         <div className="txt-secondcall">
           <p ref={pRightRef} className={fadeRight ? "fade-right" : ""}>

@@ -1,5 +1,6 @@
 import "../styles/App.scss";
 import Dropdown from "../components/dropdown";
+import SlideMobile from "../components/slidemobile";
 import { useEffect, useRef, useState } from "react";
 
 function Description() {
@@ -66,6 +67,9 @@ function Description() {
             visible ? "fade-right" : ""
           }`}
         >
+          <div className="content-slide-mobile">
+            <SlideMobile />
+          </div>
           <div className="content-dropdown">
             <Dropdown />
           </div>

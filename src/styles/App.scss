@@ -208,8 +208,8 @@ svg,
         will-change: transform;
 
         .logo-footer {
-          height: 652.8px;
-          width: 1360px;
+          height: 85vh;
+          width: 85vw;
           align-self: flex-start;
           margin-top: 3em;
           margin-left: 2em;
@@ -263,6 +263,8 @@ svg,
 }
 
 //Front
+
+.content-title-front p br.br-576 { display: none; }
 
 @keyframes shake {
   0% {
@@ -560,6 +562,7 @@ svg,
   }
 }
 
+
 // Slideshow
 
 .content-slideshow {
@@ -666,12 +669,13 @@ svg,
           color: 181818;
           font-family: "PP Neue Montreal", sans-serif;
           font-size: 32px;
+          font-weight: 300;
         }
         p {
           margin-top: 0.5em;
           margin-bottom: 0.2em;
           font-weight: 300;
-          font-size: 18px;
+          font-size: 16px;
         }
       }
     }
@@ -680,7 +684,6 @@ svg,
       @include auto;
       @include flex;
       height: 10em;
-
       gap: 0.5em;
       z-index: 5;
 
@@ -719,12 +722,12 @@ svg,
 
     div:nth-child(1) {
       position: relative;
-      .dog {
+      .idTwo {
         @include template-img;
         position: absolute;
         bottom: 0;
       }
-      .fox {
+      .idOne {
         @include template-img;
         position: absolute;
         top: 20%;
@@ -741,13 +744,13 @@ svg,
         @include flex;
         position: relative;
 
-        .fox {
+        .idThree {
           @include template-img;
           position: absolute;
           top: -10%;
           left: 10%;
         }
-        .cat {
+        .idFour {
           @include template-img;
           position: absolute;
           bottom: 0;
@@ -765,13 +768,13 @@ svg,
     }
     div:nth-child(3) {
       position: relative;
-      .cat {
+      .idFive {
         @include template-img;
         position: absolute;
         top: 0;
         left: 0;
       }
-      .dog {
+      .idSix {
         @include template-img;
         position: absolute;
         bottom: 5%;
@@ -788,20 +791,20 @@ svg,
     height: 50vh;
     div:nth-child(1) {
       position: relative;
-      .fox {
+      .idEight {
         @include template-img;
         position: absolute;
         bottom: 5%;
         left: 0;
         z-index: 300;
       }
-      .cat {
+      .idSeven {
         @include template-img;
         position: absolute;
         top: 10%;
         right: 10%;
       }
-      .dog {
+      .idNine {
         @include template-img;
         position: absolute;
         bottom: -5em;
@@ -881,20 +884,20 @@ svg,
     }
     div:nth-child(3) {
       position: relative;
-      .fox {
+      .idTwelve {
         @include template-img;
         position: absolute;
         bottom: 5%;
         left: -20%;
         z-index: 300;
       }
-      .cat {
+      .idEleven {
         @include template-img;
         position: absolute;
         top: 10%;
         right: 20%;
       }
-      .dog {
+      .idThirteen {
         @include template-img;
         position: absolute;
         bottom: -4em;
@@ -1082,7 +1085,7 @@ svg,
       opacity: 0;
       img {
         width: 592px;
-        height: 492px;
+        height: 510px;
         animation: bounce 3s ease-in-out infinite;
       }
     }

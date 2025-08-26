@@ -1,6 +1,7 @@
 import { useEffect } from "react"; // ← ajoute ceci
 import { Routes, Route } from "react-router-dom";
 import "../styles/App.scss";
+import "../styles/mediaqueries.scss";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import DropArrow from "../components/droparrow";

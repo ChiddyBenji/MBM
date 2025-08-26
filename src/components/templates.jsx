@@ -5,9 +5,19 @@ import zed from "../assets/zed.png";
 import wix from "../assets/wix.png";
 import shophify from "../assets/shophify.png";
 import wordpress from "../assets/wordpress.png";
-import fox from "../assets/fox.jpg";
-import cat from "../assets/cat.jpg";
-import dog from "../assets/dog.jpg";
+import idOne from "../assets/identity-one.png";
+import idTwo from "../assets/identity-two.png";
+import idThree from "../assets/identity-three.png";
+import idFour from "../assets/identity-four.png";
+import idFive from "../assets/identity-five.png";
+import idSix from "../assets/identity-six.png";
+import idSeven from "../assets/identity-seven.png";
+import idEight from "../assets/identity-eight.png";
+import idNine from "../assets/identity-nine.png";
+import idTen from "../assets/identity-ten.png";
+import idEleven from "../assets/identity-eleven.png";
+import idTwelve from "../assets/identity-twelve.png";
+import idThirteen from "../assets/identity-thirteen.png";
 
 // 🔁 Composant Modale via React Portal
 function Modal({ children, onClose }) {
@@ -130,26 +140,26 @@ function Template() {
 
   const imageGroups = {
     group1: [
-      { className: "dog", src: dog, alt: "dog" },
-      { className: "fox", src: fox, alt: "fox" },
+      { className: "idTwo", src: idTwo, alt: "id-two" },
+      { className: "idOne", src: idOne, alt: "id-one" },
     ],
     group2: [
-      { className: "fox", src: fox, alt: "fox" },
-      { className: "cat", src: cat, alt: "cat" },
+      { className: "idThree", src: idThree, alt: "idThree" },
+      { className: "idFour", src: idFour, alt: "idFour" },
     ],
     group3: [
-      { className: "cat", src: cat, alt: "cat" },
-      { className: "dog", src: dog, alt: "dog" },
+      { className: "idFive", src: idFive, alt: "idFive" },
+      { className: "idSix", src: idSix, alt: "idSix" },
     ],
     group4: [
-      { className: "cat", src: cat, alt: "cat" },
-      { className: "dog", src: dog, alt: "dog" },
-      { className: "fox", src: fox, alt: "fox" },
+      { className: "idSeven", src: idSeven, alt: "idSeven" },
+      { className: "idNine", src: idNine, alt: "idNine" },
+      { className: "idEight", src: idEight, alt: "idEight" },
     ],
     group5: [
-      { className: "fox", src: fox, alt: "fox" },
-      { className: "cat", src: cat, alt: "cat" },
-      { className: "dog", src: dog, alt: "dog" },
+      { className: "idTwelve", src: idTwelve, alt: "idTwelve" },
+      { className: "idEleven", src: idEleven, alt: "idEleven" },
+      { className: "idThirteen", src: idThirteen, alt: "idThirteen" },
     ],
   };
 
@@ -202,7 +212,7 @@ function Template() {
             </div>
 
             <div className="content-img-two">
-              <TiltImage className="dog" src={dog} alt="dog" onClick={() => setZoomImg(dog)} scale={scrollScale} />
+              <TiltImage className="dog" src={idTen} alt="idTen" onClick={() => setZoomImg(idTen)} scale={scrollScale} />
             </div>
           </div>
 
