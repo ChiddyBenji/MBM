@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import call from "../assets/call.png";
 import ecrou from "../assets/ecrou.png";
+import StepDots from "../components/StepDots"; 
 
 function Call({ step }) {
   const progress = (step / 3) * 100;
@@ -63,9 +64,8 @@ function Call({ step }) {
         <div className="content-callfirst">
           <div className="txt-firtcall">
             <p ref={pLeftRef} className={fadeLeft ? "fade-left" : ""}>
-              Un parcours clair,
-              <br />
-              de l'idée
+              Un parcours clair, 
+              <br /> de l'idée
             </p>
           </div>
 
@@ -102,6 +102,7 @@ function Call({ step }) {
               style={{ width: `${progress}%` }}
             ></div>
           </div>
+          <StepDots total={3} active={Math.min(Math.max(step, 1), 3)} />
         </div>
       </div>
     </section>

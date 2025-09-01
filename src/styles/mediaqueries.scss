@@ -39,11 +39,15 @@
       h1 {
         font-size: 34px;
         line-height: 40px;
+        padding-left: 1em;
+        padding-right: 1em;
       }
       p {
         text-align: center;
         margin-bottom: 0;
         font-size: 20px;
+        padding-left: 1em;
+        padding-right: 1em;
       }
       br.br-576 {
         display: inline;
@@ -94,6 +98,7 @@
       .content-slide-mobile {
         @include flex(center, center);
         height: 100%;
+        margin-top: 5em;
 
         .slide-mobile {
           @include flex;
@@ -166,4 +171,429 @@
 @media (min-width: 576px) {
   .content-slide-mobile {
     display: none;
-  }}
+  }
+}
+
+//what
+
+@media (max-width: 576px) {
+  .content-slideshow {
+    margin-bottom: 10em;
+    .content-txt-slideshow {
+      justify-content: center;
+      .content-para-slideshow {
+        @include flex;
+        flex-direction: column;
+        padding-left: 0 !important;
+        h2 {
+          font-size: 28px;
+          text-align: center;
+          padding-left: 1em;
+          padding-right: 1em;
+        }
+        p {
+          padding-left: 1em;
+          padding-right: 1em;
+          text-align: center;
+        }
+      }
+    }
+    .slideshow {
+      margin-top: 5em;
+      .content-cards-slideshow {
+        width: 324px;
+        height: 498px;
+        .next {
+          right: 20px;
+        }
+        .prev {
+          left: 20px;
+        }
+        .slide-text {
+          width: 100%;
+          padding: 0;
+          h2 {
+            font-size: 28px;
+            padding-right: 0.5em;
+            padding-left: 0.5em;
+          }
+          p {
+            padding-right: 1em;
+            padding-left: 1em;
+            margin-top: 100%;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// templates
+
+/* Mini-templates — mobile first (≤576) */
+.mini-templates {
+  @include auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: -2em auto 8em auto;
+  max-width: 1200px;
+  position: relative;
+  padding-bottom: clamp(72px, 10vw, 112px);
+
+  &__header {
+    text-align: center;
+    h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin: 0 0 0.25rem 0;
+      font-family: "PP Neue Montreal", sans-serif;
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  &__icons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    justify-items: center;
+
+    &-title {
+      font-family: "PP Neue Montreal", sans-serif;
+      text-transform: uppercase;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #6969694d;
+      font-size: 12px;
+    }
+    &-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 2em;
+      img {
+        display: block;
+        height: 25px;
+        width: 25px;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-flow: dense;
+    gap: 0.75rem;
+
+    /* ➜ hauteur uniforme par ligne (ajuste si besoin) */
+    grid-auto-rows: clamp(186.1px, 28vw, 332.04px);
+
+    > .mini-card:nth-child(4n + 1) {
+      grid-column: span 7;
+    } /* 35% */
+    > .mini-card:nth-child(4n + 2) {
+      grid-column: span 13;
+    } /* 65% */
+    > .mini-card:nth-child(4n + 3) {
+      grid-column: span 15;
+    } /* 75% */
+    > .mini-card:nth-child(4n + 4) {
+      grid-column: span 5;
+    } /* 25% */
+  }
+
+  .mini-card {
+    position: relative;
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.25s ease;
+
+    /* la carte prend toute la hauteur de la ligne */
+    height: 100%;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* ✅ pas d’étirement, recadrage auto */
+      object-position: center; /* centre par défaut */
+      display: block;
+      object-fit: cover;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: clamp(100px, 3.5vw, 32px); /* offset bottom responsive */
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+
+    .btn-disco {
+      background-color: #000;
+      color: #fff;
+      width: clamp(200px, 60%, 280px);
+      max-width: 100%;
+      height: 32px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-family: "Helvetica Neue", sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background-color 0.25s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 28px 56px rgba(0, 0, 0, 0.2);
+      }
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+      }
+    }
+  }
+}
+
+/* Modal (réutilisable) */
+.mini-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+  cursor: zoom-out;
+}
+
+.mini-modal__inner {
+  position: relative;
+  max-width: min(92vw, 900px);
+  max-height: 80dvh;
+  padding: 0;
+  animation: zoomIn 0.35s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 80dvh;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .mini-modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #ff4500;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+    transition: transform 0.2s ease, color 0.3s ease;
+    &:hover {
+      transform: rotate(90deg);
+      color: #f4f4f4;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .mini-templates {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-templates {
+    display: none;
+  }
+}
+
+// call
+
+@media (max-width: 576px) {
+  .content-call {
+    margin-top: 5em;
+    height: auto;
+    position: relative;
+
+    .content-callfirst {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "first"
+        "second"
+        "img";
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .content-callfirst .txt-firtcall {
+      grid-area: first;
+      width: 100%;
+      height: auto;
+      @include flex(center, center);
+      text-align: center;
+
+      p { font-size: 28px; font-weight: 500; opacity: 1; margin: 0; }
+    }
+
+    .content-callfirst .txt-secondcall {
+      grid-area: second;
+      width: 100%;
+      height: auto;
+      @include flex(center, center);
+      text-align: center;
+      margin-top: -0.5em;
+
+      p { font-size: 28px; font-weight: 500; margin: 0; }
+    }
+
+    /* ✅ Image toujours à la même taille + pas de déformation/zoom au scroll */
+    .content-callfirst .img-call {
+      grid-area: img;
+      width: 100%;
+      height: 50vh !important;
+      @include flex(center, center);
+    
+
+      img {
+        width: clamp(260px, 80vw, 520px);
+        aspect-ratio: 592 / 510;
+        height: auto;
+        object-fit: contain;
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
+    /* Le bloc à droite reste en absolute */
+    .content-push-scroll {
+      position: absolute;
+      right: 0;
+      top: 78%;
+      transform: translateY(-50%);
+      width: 0%;
+      min-width: 64px;
+      height: auto;
+
+      img { display: block; margin: 0 auto; height: 15em; }
+    }
+
+    /* ───────────────────────────────────────────
+       Supprimer les <br> uniquement en mobile
+       ─────────────────────────────────────────── */
+    .txt-firtcall br,
+    .txt-secondcall br,
+    .content-callsecond p br {
+      display: none;
+    }
+
+    /* (optionnel) léger espacement pour compenser la disparition du <br> */
+    .txt-firtcall p,
+    .txt-secondcall p,
+    .content-callsecond p {
+      word-spacing: 0.06em;
+    }
+
+    .content-callsecond {
+      margin-top: 0;
+      h2 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 16px;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+      .scroll-horizon {
+        display: none;
+      }
+      .content-indentation {
+      @include auto;
+      @include flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5em;
+      height: 3.5em;
+      margin-top: 1.25em;
+
+      .indentation {
+        width: 10px;
+        height: 10px;
+        background-color: #1818184d;
+        border: none;
+        transition: transform .3s ease, background-color .3s ease;
+        cursor: default;
+      }
+      .indentation.active {
+        background-color: #ff4500;
+        transform: translateY(-.35em);
+        box-shadow:
+          0 15px 40px rgba(0, 0, 0, 0.3),
+          0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+    }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .content-call {
+    .content-callsecond {
+      .content-indentation {
+        display: none;
+      }
+    }
+  }
+}
+
+//form 
+
+@media (max-width: 576px) {
+  .content-form {
+    margin-top: 5em;
+    .form-one {
+
+    }
+    .form-two {
+      
+    }
+  }
+}

@@ -322,6 +322,7 @@ svg,
     @include flex-center;
     @include auto;
     flex-direction: column;
+    text-align: center;
     h1 {
       @include flex-center;
       flex-direction: column;

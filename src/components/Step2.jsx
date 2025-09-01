@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ecrou from "../assets/ecrou.png";
 import holo from "../assets/holo.png";
+import StepDots from "../components/StepDots";
 
 function Step2({ step }) {
   const progress = (step / 3) * 100;
@@ -63,8 +64,7 @@ function Step2({ step }) {
         <div className="txt-firtcall">
           <p ref={pLeftRef} className={fadeLeft ? "fade-left" : ""}>
             Une vision structurée,
-            <br />
-            du design
+            <br /> du design
           </p>
         </div>
         <div
@@ -95,6 +95,7 @@ function Step2({ step }) {
         <div className="scroll-horizon">
           <div className="progress-bar" style={{ width: `${progress}%` }}></div>
         </div>
+        <StepDots total={3} active={Math.min(Math.max(step, 1), 3)} />
       </div>
     </div>
   );

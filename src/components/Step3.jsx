@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import tecrou from "../assets/tecrou.png";
+import StepDots from "../components/StepDots";
 
 
 function Step3({ step }) {
@@ -91,6 +92,7 @@ function Step3({ step }) {
         <div className="scroll-horizon">
           <div className="progress-bar" style={{ width: `${progress}%` }}></div>
         </div>
+        <StepDots total={3} active={Math.min(Math.max(step, 1), 3)} />
       </div>
     </div>
   );

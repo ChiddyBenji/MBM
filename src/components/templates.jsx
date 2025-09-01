@@ -18,6 +18,8 @@ import idTen from "../assets/identity-ten.png";
 import idEleven from "../assets/identity-eleven.png";
 import idTwelve from "../assets/identity-twelve.png";
 import idThirteen from "../assets/identity-thirteen.png";
+import MiniTemplates from "../components/mini-templates";
+
 
 // 🔁 Composant Modale via React Portal
 function Modal({ children, onClose }) {
@@ -230,6 +232,7 @@ function Template() {
           </Modal>
         )}
       </div>
+       <MiniTemplates />
     </section>
   );
 }
