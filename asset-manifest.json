@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MBM/static/css/main.17ff440d.css",
-    "main.js": "/MBM/static/js/main.3c9848fb.js",
+    "main.css": "/MBM/static/css/main.c757e275.css",
+    "main.js": "/MBM/static/js/main.c68fd4d1.js",
     "static/js/453.31867077.chunk.js": "/MBM/static/js/453.31867077.chunk.js",
     "static/media/tecrou.png": "/MBM/static/media/tecrou.93022cb0fb3ad4b31ab7.png",
     "static/media/three.jpg": "/MBM/static/media/three.b0ea3ccedf8b0385325a.jpg",
@@ -25,15 +25,18 @@
     "static/media/dglobe.png": "/MBM/static/media/dglobe.65c08c0051651529df78.png",
     "static/media/dcube.png": "/MBM/static/media/dcube.77b80ea0345075dae67f.png",
     "static/media/dtriangle.png": "/MBM/static/media/dtriangle.2edc2de5fbea637f3f4e.png",
+    "static/media/shophify.png": "/MBM/static/media/shophify.7924ecc2555f155761ba.png",
     "static/media/ppneuemontreal-medium.otf": "/MBM/static/media/ppneuemontreal-medium.0f34f4714f1b26e0dedc.otf",
+    "static/media/wordpress.png": "/MBM/static/media/wordpress.10b268dbf7ee88ad10e9.png",
+    "static/media/webflow.png": "/MBM/static/media/webflow.1edbe2d9e652960cd613.png",
     "static/media/ecrou.png": "/MBM/static/media/ecrou.b7b6c5e00d4821afbef2.png",
     "index.html": "/MBM/index.html",
-    "main.17ff440d.css.map": "/MBM/static/css/main.17ff440d.css.map",
-    "main.3c9848fb.js.map": "/MBM/static/js/main.3c9848fb.js.map",
+    "main.c757e275.css.map": "/MBM/static/css/main.c757e275.css.map",
+    "main.c68fd4d1.js.map": "/MBM/static/js/main.c68fd4d1.js.map",
     "453.31867077.chunk.js.map": "/MBM/static/js/453.31867077.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.17ff440d.css",
-    "static/js/main.3c9848fb.js"
+    "static/css/main.c757e275.css",
+    "static/js/main.c68fd4d1.js"
   ]
 }
