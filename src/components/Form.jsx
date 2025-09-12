@@ -115,10 +115,12 @@ function Form() {
           <div className="content-project">
             <h2>Parlez-nous de votre projet.</h2>
             <p>
-              <span>Pas de formulaire générique. Décrivez votre besoin en</span> <br />
+              <span>Pas de formulaire générique. Décrivez votre besoin en</span>{" "}
+              <br className="br-desktop" />
               <span>
-                quelques lignes, nous revenons vers vous avec une
-              </span> <br />
+                quelques lignes ____ , nous revenons vers vous avec une
+              </span>{" "}
+              <br className="br-desktop" />
               <span>proposition concrète.</span>
             </p>
           </div>
@@ -132,7 +134,7 @@ function Form() {
             <div className="us-contact">
               <p>Nous contacter</p>
               <h3>
-                bonjour@mbstudio.com <br />
+                bonjour@mbstudio.com <br className="br-desktop" />
                 [+33] 6 54 32 11 96
               </h3>
             </div>
@@ -161,7 +163,7 @@ function Form() {
             <p>Bonjour MB Studio,</p>
 
             <p>
-              Je m’appelle (
+              Je m’appelle <span className="paren">(</span>
               <input
                 type="text"
                 name="nom1"
@@ -171,7 +173,9 @@ function Form() {
                 onChange={handleInputChange}
                 required
               />
-              ). Je vous contacte parce que j’ai besoin de <br /> (
+              <span className="paren">)</span> Je vous contacte parce que j’ai
+              besoin de <br className="br-desktop" />{" "}
+              <span className="paren">(</span>
               <input
                 type="text"
                 name="besoin1"
@@ -180,7 +184,8 @@ function Form() {
                 value={formData.besoin1}
                 onChange={handleInputChange}
               />
-              ) et (
+              <span className="paren">)</span> et{" "}
+              <span className="paren">(</span>
               <input
                 type="text"
                 name="besoin2"
@@ -188,7 +193,9 @@ function Form() {
                 placeholder=" e-commerce"
                 value={formData.besoin2}
                 onChange={handleInputChange}
-              />) pour <br /> (
+              />
+              <span className="paren">)</span> pour{" "}
+              <br className="br-desktop" /> <span className="paren">(</span>
               <input
                 type="text"
                 name="entreprise"
@@ -196,15 +203,17 @@ function Form() {
                 placeholder=" mon entreprise de vente de fixie gear en ligne "
                 value={formData.entreprise}
                 onChange={handleInputChange}
-              />).
+              />
+              <span className="paren">)</span>
             </p>
+
             <div className="content-radio-list">
               <p>J’ai déjà :</p>
               <ul className="radio-list">
                 {dejaItems.map((item) => (
                   <li key={item.id}>
                     <label className="radio-item">
-                      (
+                      <span className="paren">(</span>
                       <input
                         type="checkbox"
                         name={item.id}
@@ -212,7 +221,8 @@ function Form() {
                         onChange={() => handleCheckboxChange(item.id)}
                       />
                       <span className="custom-radio" />
-                      <span className="radio-label">{item.label}</span>)
+                      <span className="radio-label">{item.label}</span>
+                      <span className="paren">)</span>
                     </label>
                   </li>
                 ))}
@@ -220,7 +230,7 @@ function Form() {
             </div>
 
             <p>
-              Mon budget est de (
+              Mon budget est de <span className="paren">(</span>
               <input
                 type="text"
                 name="budget"
@@ -229,7 +239,9 @@ function Form() {
                 value={formData.budget}
                 onChange={handleInputChange}
               />
-              ), et j’aimerais lancer le <br /> projet dans (
+              <span className="paren">)</span> et j’aimerais lancer le{" "}
+              <br className="br-desktop" /> projet dans{" "}
+              <span className="paren">(</span>
               <input
                 type="text"
                 name="delai"
@@ -237,7 +249,10 @@ function Form() {
                 placeholder="2 à 6 mois"
                 value={formData.delai}
                 onChange={handleInputChange}
-              />). <br /> Vous pouvez me contacter par (
+              />
+              <span className="paren">)</span>{" "}
+              <br className="br-desktop" /> Vous pouvez me contacter par{" "}
+              <span className="paren">(</span>
               <input
                 type="text"
                 name="contactMoyen"
@@ -245,7 +260,9 @@ function Form() {
                 placeholder="email"
                 value={formData.contactMoyen}
                 onChange={handleInputChange}
-              />) à <br /> (
+              />
+              <span className="paren">)</span> à <br className="br-desktop" />{" "}
+              <span className="paren">(</span>
               <input
                 type="email"
                 name="email"
@@ -254,11 +271,12 @@ function Form() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-              />).
+              />
+              <span className="paren">)</span>
             </p>
 
             <p>
-              À bientôt, (
+              À bientôt, <span className="paren">(</span>
               <input
                 type="text"
                 name="nom2"
@@ -267,9 +285,12 @@ function Form() {
                 value={formData.nom2}
                 onChange={handleInputChange}
                 required
-              />).
+              />
+              <span className="paren">)</span>
             </p>
+
             <button type="submit">Envoyer</button>
+
             {showConfirmation && (
               <p
                 className="confirmation-message"

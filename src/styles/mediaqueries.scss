@@ -184,7 +184,8 @@
       .content-para-slideshow {
         @include flex;
         flex-direction: column;
-        padding-left: 0 !important;
+        padding-left: 0.5em !important;
+        padding-right: 0.5em !important;
         h2 {
           font-size: 28px;
           text-align: center;
@@ -471,7 +472,12 @@
       @include flex(center, center);
       text-align: center;
 
-      p { font-size: 28px; font-weight: 500; opacity: 1; margin: 0; }
+      p {
+        font-size: 28px;
+        font-weight: 500;
+        opacity: 1;
+        margin: 0;
+      }
     }
 
     .content-callfirst .txt-secondcall {
@@ -482,7 +488,11 @@
       text-align: center;
       margin-top: -0.5em;
 
-      p { font-size: 28px; font-weight: 500; margin: 0; }
+      p {
+        font-size: 28px;
+        font-weight: 500;
+        margin: 0;
+      }
     }
 
     /* ✅ Image toujours à la même taille + pas de déformation/zoom au scroll */
@@ -491,7 +501,6 @@
       width: 100%;
       height: 50vh !important;
       @include flex(center, center);
-    
 
       img {
         width: clamp(260px, 80vw, 520px);
@@ -513,7 +522,11 @@
       min-width: 64px;
       height: auto;
 
-      img { display: block; margin: 0 auto; height: 15em; }
+      img {
+        display: block;
+        margin: 0 auto;
+        height: 15em;
+      }
     }
 
     /* ───────────────────────────────────────────
@@ -546,30 +559,29 @@
         display: none;
       }
       .content-indentation {
-      @include auto;
-      @include flex;
-      justify-content: center;
-      align-items: center;
-      gap: .5em;
-      height: 3.5em;
-      margin-top: 1.25em;
+        @include auto;
+        @include flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+        height: 3.5em;
+        margin-top: 1.25em;
 
-      .indentation {
-        width: 10px;
-        height: 10px;
-        background-color: #1818184d;
-        border: none;
-        transition: transform .3s ease, background-color .3s ease;
-        cursor: default;
+        .indentation {
+          width: 10px;
+          height: 10px;
+          background-color: #1818184d;
+          border: none;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+          cursor: default;
+        }
+        .indentation.active {
+          background-color: #ff4500;
+          transform: translateY(-0.35em);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+            0 5px 15px rgba(0, 0, 0, 0.1);
+        }
       }
-      .indentation.active {
-        background-color: #ff4500;
-        transform: translateY(-.35em);
-        box-shadow:
-          0 15px 40px rgba(0, 0, 0, 0.3),
-          0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-    }
     }
   }
 }
@@ -584,16 +596,233 @@
   }
 }
 
-//form 
+//form
 
 @media (max-width: 576px) {
   .content-form {
+    /* colonne unique, centrée */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 0 16px;
     margin-top: 5em;
-    .form-one {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
 
+    /* ⚠️ On "aplati" .form-one pour pouvoir réordonner ses enfants */
+    .form-one {
+      display: contents; /* ses enfants deviennent des items du flex parent */
+    }
+
+    /* Ordre mobile = intro > formulaire > disponibilité/contact/social */
+    .content-project {
+      order: 1;
     }
     .form-two {
-      
+      order: 2;
     }
+    /* orthographes possibles (selon ton code) */
+    .content-disponiblite {
+      order: 3;
+    }
+
+    /* Intro */
+    .content-project {
+      padding: 0;
+      h2 {
+        font-size: 28px !important;
+        margin-bottom: 0.5rem;
+        padding: 0em 1em 0em 0.5em;
+        text-align: left;
+        
+      }
+      p {
+        padding: 0em 2em 0 1em !important;
+        span {
+          font-size: 18px !important;
+        }
+      }
+    }
+
+    /* Formulaire */
+    .form-two {
+      width: 100%;
+      height: auto;
+      padding: 0em 1em 0em 1em;
+      opacity: 1;
+      transform: none;
+      margin-top: 2em;
+
+      .email-template {
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: 100 !important;
+        padding-right: 5%;
+
+        p {
+          margin-bottom: 14px;
+        }
+
+        /* Inputs sur une ligne pleine avec soulignement (style maquette) */
+        input[type="text"],
+        input[type="email"] {
+          display: block;
+          width: 90%;
+          text-align: left;
+          padding: 2px 0;
+          margin: 4px 0 12px;
+          border: none;
+          border-bottom: 1px solid #000000;
+          font: inherit;
+          color: #1a1a1a;
+        }
+
+        input::placeholder {
+          font-size: 16px;
+          color: #c6c6c7;
+        }
+        input:focus {
+          outline: none;
+          border-bottom: 1px solid #ff4500;
+        }
+
+        /* "J’ai déjà" en puces/étiquettes (pills) */
+        .content-radio-list {
+          flex-direction: column;
+          height: auto;
+          gap: 8px;
+          margin-top: 3em;
+          margin-bottom: 3em;
+
+          p {
+            width: 100%;
+            height: auto;
+            margin-top: 0;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+
+          .radio-list {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0;
+            margin: 0 0 12px 0;
+
+            li {
+              margin: 0;
+            }
+
+            .radio-item {
+              display: inline-flex;
+              align-items: center;
+              gap: 0;
+
+              input {
+                display: none;
+              } /* on garde l’input pour l’état */
+              .custom-radio {
+                display: none;
+              } /* on masque le point rond */
+
+              .radio-label {
+                display: inline-block;
+                padding: 6px 10px;
+                border: 1px solid #cfcfcf;
+                border-radius: 999px;
+                font-size: 13px;
+                line-height: 1;
+                background: #ffffff;
+                color: #7c7c7c;
+              }
+
+              /* style "sélectionné" */
+              input:checked + .custom-radio + .radio-label {
+                background: #181818 !important;
+                color: #fff;
+                border-color: #181818 !important;
+              }
+            }
+          }
+        }
+
+        /* CTA pleine largeur */
+        button[type="submit"] {
+          width: 80%;
+          height: 40px;
+          font-size: 16px;
+          margin-top: 3em;
+        }
+      }
+    }
+
+    /* Disponibilité / Contact / Réseaux (bloc bas) */
+    .content-disponiblite,
+    .content-disponibilite {
+      margin-top: 8px;
+      padding-bottom: 24px;
+      font-size: 14px !important;
+      padding-left: 1em;
+
+      .disponiblite p,
+      .us-contact p,
+      .us-social p {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .disponiblite h3 {
+        font-size: 16px !important;
+        margin: 0 0 12px;
+      }
+      .us-contact h3 {
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0 0 8px;
+        padding-right: 10%;
+      }
+
+      .us-social ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .us-social ul li {
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+    }
+
+    /* On neutralise les offsets d’animation sur mobile */
+    .form-one,
+    .form-two {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Raccourcis d’affichage mobile */
+@media (max-width: 576px) {
+  .br-desktop { display: none; }  /* masque les <br> de mise en page desktop */
+  .paren { display: none; }       /* masque les parenthèses sur mobile */
+}
+
+@media (max-width: 576px) {
+  .logo-3d {
+    img {
+      height: 22vh !important;
+      width: 42vh !important;
+      margin-left: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {  
+    height: 50vh;
   }
 }

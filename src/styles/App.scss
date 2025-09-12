@@ -190,7 +190,7 @@ svg,
 .footer {
   @include flex-center;
   height: 100vh;
-  background-color: #f4f4f4;
+  
   flex-direction: column;
   .content-logo-footer {
     @include auto;
