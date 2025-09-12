@@ -20,6 +20,13 @@
   }
 }
 
+@media (max-width: 576px) {
+  html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+}
+
 //who
 
 @media (max-width: 576px) {
@@ -750,7 +757,7 @@
 
         /* CTA pleine largeur */
         button[type="submit"] {
-          width: 80%;
+          width: 90%;
           height: 40px;
           font-size: 16px;
           margin-top: 3em;
@@ -825,4 +832,25 @@
   .footer {  
     height: 50vh;
   }
+}
+
+@media (max-width: 426px) {
+  .content-title-front {
+  h1 {
+    font-size: 25px !important;
+  }
+  p {
+    font-size: 18px !important;
+  }
+}
+}
+
+/* Filet de sécurité : en desktop on ne laisse jamais la section invisible */
+@media (min-width: 577px) {
+  .content-form .form-one,
+  .content-form .form-two {
+    opacity: 1;
+    transform: none;
+  }
+  .form-one { display: flex; } /* tu l’avais déjà, on garde */
 }

@@ -63,6 +63,23 @@ function Form() {
     return () => el && observer.unobserve(el);
   }, []);
 
+  useEffect(() => {
+    const onResize = () => {
+      const isDesktop = window.matchMedia("(min-width: 577px)").matches;
+      if (isDesktop) {
+        // force l'état "visible" quand on repasse en desktop
+        setFadeLeft(true);
+        setFadeRight(true);
+      }
+    };
+
+    // run une fois au mount (utile si on charge direct en desktop)
+    onResize();
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -111,7 +128,10 @@ function Form() {
   return (
     <section id="form">
       <div className="content-form">
-        <div className={`form-one ${fadeLeft ? "fade-left" : ""}`} ref={leftRef}>
+        <div
+          className={`form-one ${fadeLeft ? "fade-left" : ""}`}
+          ref={leftRef}
+        >
           <div className="content-project">
             <h2>Parlez-nous de votre projet.</h2>
             <p>
@@ -158,7 +178,10 @@ function Form() {
           </div>
         </div>
 
-        <section className={`form-two ${fadeRight ? "fade-right" : ""}`} ref={rightRef}>
+        <section
+          className={`form-two ${fadeRight ? "fade-right" : ""}`}
+          ref={rightRef}
+        >
           <form className="email-template" onSubmit={handleSubmit}>
             <p>Bonjour MB Studio,</p>
 
@@ -250,9 +273,8 @@ function Form() {
                 value={formData.delai}
                 onChange={handleInputChange}
               />
-              <span className="paren">)</span>{" "}
-              <br className="br-desktop" /> Vous pouvez me contacter par{" "}
-              <span className="paren">(</span>
+              <span className="paren">)</span> <br className="br-desktop" />{" "}
+              Vous pouvez me contacter par <span className="paren">(</span>
               <input
                 type="text"
                 name="contactMoyen"
