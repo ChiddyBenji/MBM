@@ -84,7 +84,7 @@
       padding-right: 2em;
 
       h2 {
-        font-size: 28px;
+        font-size: 26px;
       }
     }
 
@@ -194,7 +194,7 @@
         padding-left: 0.5em !important;
         padding-right: 0.5em !important;
         h2 {
-          font-size: 28px;
+          font-size: 26px;
           text-align: center;
           padding-left: 1em;
           padding-right: 1em;
@@ -221,7 +221,7 @@
           width: 100%;
           padding: 0;
           h2 {
-            font-size: 28px;
+            font-size: 26px;
             padding-right: 0.5em;
             padding-left: 0.5em;
           }
@@ -253,7 +253,7 @@
   &__header {
     text-align: center;
     h2 {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 500;
       margin: 0 0 0.25rem 0;
       font-family: "PP Neue Montreal", sans-serif;
@@ -480,7 +480,7 @@
       text-align: center;
 
       p {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 500;
         opacity: 1;
         margin: 0;
@@ -496,7 +496,7 @@
       margin-top: -0.5em;
 
       p {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 500;
         margin: 0;
       }
@@ -614,7 +614,7 @@
     padding: 0 16px;
     margin-top: 5em;
     max-width: 520px;
-    margin-left: auto;
+
     margin-right: auto;
 
     /* ⚠️ On "aplati" .form-one pour pouvoir réordonner ses enfants */
@@ -638,7 +638,7 @@
     .content-project {
       padding: 0;
       h2 {
-        font-size: 28px !important;
+        font-size: 26px !important;
         margin-bottom: 0.5rem;
         padding: 0em 1em 0em 0.5em;
         text-align: left;
@@ -845,12 +845,19 @@
 }
 }
 
-/* Filet de sécurité : en desktop on ne laisse jamais la section invisible */
-@media (min-width: 577px) {
-  .content-form .form-one,
-  .content-form .form-two {
-    opacity: 1;
-    transform: none;
+/* Désactive complètement les fades sur mobile */
+@media (max-width: 576px) {
+  .fade-left,
+  .fade-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
   }
-  .form-one { display: flex; } /* tu l’avais déjà, on garde */
+}
+
+@media (max-width: 576px) {
+  .custom-cursor {
+    display: none;
+  }
 }
