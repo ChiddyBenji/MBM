@@ -31,6 +31,19 @@
 }
 
 @media (max-width: 576px) {
+  /* Opacité du logo selon le scroll (mobile only) */
+  .header .content-logo .logo {
+    opacity: 1;
+    transition: opacity .25s ease; /* lissage */
+    will-change: opacity;
+  }
+  .header.scrolled .content-logo .logo {
+    opacity: .2;
+  }
+}
+
+
+@media (max-width: 576px) {
   html,
   body {
     overflow-x: hidden;
@@ -690,7 +703,7 @@
         input[type="text"],
         input[type="email"] {
           display: block;
-          width: 90%;
+          width: 100%;
           text-align: left;
           padding: 2px 0;
           margin: 4px 0 12px;
