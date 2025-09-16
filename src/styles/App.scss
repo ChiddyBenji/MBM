@@ -50,10 +50,7 @@
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    background-color 0.2s ease,
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease,
     border-radius 0.2s ease;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -90,7 +87,6 @@ svg,
   cursor: none !important;
 }
 
-
 // Header
 
 .header {
@@ -100,7 +96,7 @@ svg,
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1200;
   background-color: #f4f4f4;
   transition: background-color 0.3s ease-in-out;
   &.scrolled {
@@ -185,12 +181,156 @@ svg,
   }
 }
 
+/* ——— Burger (caché par défaut en desktop) ——— */
+.header {
+  .content-burger {
+    @include flex(end);
+    margin-right: 2.5em;
+  }
+
+  .burger {
+    display: none; /* visible en mobile via media queries */
+    width: 30px;
+    height: 33px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+
+    span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #181818;
+      transition: transform 0.25s ease, opacity 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+    }
+    span:nth-child(1) { top: 8px; }
+    span:nth-child(2) { top: 15px; }
+    span:nth-child(3) { bottom: 8px; }
+
+    &.open span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+    &.open span:nth-child(2) { opacity: 0; }
+    &.open span:nth-child(3) { bottom: 15px; transform: rotate(-45deg); }
+  }
+}
+
+/* ——— Menu mobile (slide-in + backdrop) ——— */
+/* ——— Backdrop ——— */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(24,24,24,0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1090;
+}
+.menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ——— Panneau latéral ——— */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(88vw, 380px);
+  height: 100dvh;
+  background: #f9f9f9; /* légèrement plus clair que ton header (#f4f4f4) */
+  border-left: 1px solid #ececec;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.06);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1100;
+
+  /* espace en haut = hauteur header + marge */
+  padding: 100px 20px 20px; /* ton header fait 100px */
+  display: flex;
+  flex-direction: column;
+
+  /* respect safe areas iOS */
+  padding-top: calc(100px + env(safe-area-inset-top));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
+.mobile-menu.open { transform: translateX(0); }
+
+/* ——— Liste d’ancres ——— */
+.mobile-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  /* On évite les “trous”: rythme typographique régulier */
+  gap: 0;
+
+  li {
+    /* séparateur discret entre items */
+    border-bottom: 1px solid #ededed;
+
+    &:first-child { border-top: 1px solid #ededed; }
+  }
+
+  /* Boutons = texte sobre, aligné, tap target confortable */
+  li button {
+    background: none;
+    border: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    padding: 14px 4px;           /* 44px mini tap target */
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: .1px;
+    color: #181818;
+    font-family: "PP Neue Montreal", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+
+    /* feedback minimaliste */
+    transition: color .2s ease, background-color .2s ease;
+    &:hover { background-color: #f1f1f1; }
+    &:focus-visible {
+      outline: 2px solid #181818;
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+  }
+
+  /* “Contact” aligné comme les autres, plus besoin d’un gros CTA */
+  .contact-cta {
+    border-bottom: 0; /* dernier item sans trait si tu préfères */
+  }
+  .contact-cta button {
+    /* même style que les autres items */
+    padding: 14px 4px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    color: #ff4500;
+    border: 0;
+    box-shadow: none;               /* léger accent */
+    &:hover { background-color: #f1f1f1; }
+  }
+}
+
+/* Empêche le scroll du doc quand le menu est ouvert */
+body.no-scroll { overflow: hidden; }
+
+
+
 // Footer
 
 .footer {
   @include flex-center;
   height: 100vh;
-  
+
   flex-direction: column;
   .content-logo-footer {
     @include auto;
@@ -264,7 +404,9 @@ svg,
 
 //Front
 
-.content-title-front p br.br-576 { display: none; }
+.content-title-front p br.br-576 {
+  display: none;
+}
 
 @keyframes shake {
   0% {
@@ -371,7 +513,7 @@ svg,
     flex-direction: column;
     width: 50%;
     height: 85vh;
-    padding: 3em 0 3em 3em;
+    padding: 3em 3em 3em 3em;
     h2 {
       font-size: 42px;
       font-family: "PP Neue Montreal", sans-serif;
@@ -562,7 +704,6 @@ svg,
     transform: translateX(0);
   }
 }
-
 
 // Slideshow
 
@@ -989,12 +1130,10 @@ svg,
   }
 }
 
-
 .confirmation-message {
   font-size: 14px;
   margin-top: 1em;
 }
-
 
 @keyframes zoomIn {
   from {

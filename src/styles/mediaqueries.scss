@@ -4,7 +4,7 @@
 
 @media (max-width: 576px) {
   .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     .content-logo {
@@ -16,6 +16,16 @@
     }
     .content-link-contact {
       display: none;
+    }
+    .content-burger {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: end;
+      width: 33.33%;
+    }
+    .burger {
+      display: flex;
     }
   }
 }
@@ -122,8 +132,8 @@
           padding: 0 16px;
 
           img {
-            height: 250px;
-            width: 250px;
+            height: 200px;
+            width: 200px;
             object-fit: contain;
             pointer-events: none;
             user-select: none;
@@ -877,4 +887,3 @@
     touch-action: pan-y;
   }
 }
-
