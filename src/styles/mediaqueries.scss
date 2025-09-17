@@ -34,14 +34,13 @@
   /* Opacité du logo selon le scroll (mobile only) */
   .header .content-logo .logo {
     opacity: 1;
-    transition: opacity .25s ease; /* lissage */
+    transition: opacity 0.25s ease; /* lissage */
     will-change: opacity;
   }
   .header.scrolled .content-logo .logo {
-    opacity: .2;
+    opacity: 0.2;
   }
 }
-
 
 @media (max-width: 576px) {
   html,
@@ -898,5 +897,60 @@
   .scroll-steps-wrapper {
     /* Laisse le scroll vertical natif, on gère seulement les swipes horizontaux */
     touch-action: pan-y;
+  }
+}
+
+// media query au dessus de 1800px
+
+@media (min-width: 1800px) {
+  .content-templates-img {
+    img {
+      height: 220px !important;
+      width: 347px !important;
+    }
+  }
+}
+
+@media (min-width: 1800px) {
+  .column-templates-one {
+    div:nth-child(1) {
+      img {
+        height: 220px !important;
+        width: 347px !important;
+      }
+    }
+    div:nth-child(3) {
+      img {
+        height: 220px !important;
+        width: 347px !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 1800px) {
+  .column-templates-two {
+    div:nth-child(1) {
+      .idSeven,
+      .idNine,
+      .idEight {
+        height: 220px !important;
+        width: 347px !important;
+      }
+    }
+    div:nth-child(3) {
+      img {
+        height: 220px !important;
+        width: 347px !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 1800px) {
+  .img-call {
+    img {
+      height: 580px !important;
+    }
   }
 }

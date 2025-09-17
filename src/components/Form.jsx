@@ -34,50 +34,52 @@ function Form() {
 
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
+  // On applique l’anim sur .form-one / .form-two,
+  // mais on OBSERVE des enfants stables (qui gardent une boîte)
+  const leftRef = useRef(null);   // .content-project
+  const rightRef = useRef(null);  // .email-template
   const [fadeLeft, setFadeLeft] = useState(false);
   const [fadeRight, setFadeRight] = useState(false);
 
   useEffect(() => {
-    const el = leftRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setFadeLeft(true);
-      },
-      { threshold: 0.4 }
-    );
-    if (el) observer.observe(el);
-    return () => el && observer.unobserve(el);
-  }, []);
-
-  useEffect(() => {
-    const el = rightRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setFadeRight(true);
-      },
-      { threshold: 0.4 }
-    );
-    if (el) observer.observe(el);
-    return () => el && observer.unobserve(el);
-  }, []);
-
-  useEffect(() => {
-    const onResize = () => {
-      const isDesktop = window.matchMedia("(min-width: 577px)").matches;
-      if (isDesktop) {
-        // force l'état "visible" quand on repasse en desktop
-        setFadeLeft(true);
-        setFadeRight(true);
-      }
+    const options = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -10% 0px", // déclenche un peu avant d’être totalement visible
     };
 
-    // run une fois au mount (utile si on charge direct en desktop)
-    onResize();
+    const leftEl = leftRef.current;
+    const rightEl = rightRef.current;
 
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    let leftObserver, rightObserver;
+
+    if (leftEl) {
+      leftObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setFadeLeft(true);
+            observer.unobserve(entry.target); // déclenche une seule fois
+          }
+        });
+      }, options);
+      leftObserver.observe(leftEl);
+    }
+
+    if (rightEl) {
+      rightObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setFadeRight(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+      rightObserver.observe(rightEl);
+    }
+
+    return () => {
+      if (leftObserver) leftObserver.disconnect();
+      if (rightObserver) rightObserver.disconnect();
+    };
   }, []);
 
   const handleInputChange = (e) => {
@@ -128,11 +130,8 @@ function Form() {
   return (
     <section id="form">
       <div className="content-form">
-        <div
-          className={`form-one ${fadeLeft ? "fade-left" : ""}`}
-          ref={leftRef}
-        >
-          <div className="content-project">
+        <div className={`form-one ${fadeLeft ? "fade-left" : ""}`}>
+          <div className="content-project" ref={leftRef}>
             <h2>Parlez-nous de votre projet.</h2>
             <p>
               <span>Pas de formulaire générique. Décrivez votre besoin en</span>{" "}
@@ -178,11 +177,8 @@ function Form() {
           </div>
         </div>
 
-        <section
-          className={`form-two ${fadeRight ? "fade-right" : ""}`}
-          ref={rightRef}
-        >
-          <form className="email-template" onSubmit={handleSubmit}>
+        <section className={`form-two ${fadeRight ? "fade-right" : ""}`}>
+          <form className="email-template" ref={rightRef} onSubmit={handleSubmit}>
             <p>Bonjour MB Studio,</p>
 
             <p>
