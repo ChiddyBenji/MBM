@@ -74,7 +74,9 @@ function Header() {
             return (
               <button
                 key={index}
-                className={`nav-button ${activeButton === index ? "active" : ""}`}
+                className={`nav-button ${
+                  activeButton === index ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick(index, id)}
                 aria-label={item}
               >
@@ -127,6 +129,14 @@ function Header() {
         aria-modal="true"
         aria-label="Menu"
       >
+        <button
+          className="close-menu"
+          aria-label="Fermer le menu"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <span />
+          <span />
+        </button>
         <ul className="mobile-nav">
           {buttons.map((item) => {
             const id = item.toLowerCase();
@@ -137,7 +147,13 @@ function Header() {
             );
           })}
           <li className="contact-cta">
-            <button onClick={() => { handleMobileNav("form"); }}>Contact</button>
+            <button
+              onClick={() => {
+                handleMobileNav("form");
+              }}
+            >
+              Contact
+            </button>
           </li>
         </ul>
       </nav>

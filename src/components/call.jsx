@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import call from "../assets/call.png";
-import ecrou from "../assets/ecrou.png";
+import holo from "../assets/holo.png";
 import StepDots from "../components/StepDots"; 
 
 function Call({ step }) {
@@ -83,7 +83,7 @@ function Call({ step }) {
           </div>
 
           <div className="content-push-scroll">
-            <img src={ecrou} alt="scroll icon" />
+            <img src={holo} alt="scroll icon" />
           </div>
         </div>
 

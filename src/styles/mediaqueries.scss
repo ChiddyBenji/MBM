@@ -112,6 +112,9 @@
       p {
         font-size: 16px;
       }
+      br {
+        display: none;
+      }
     }
 
     .content-dropdown-description {
@@ -512,6 +515,7 @@
         opacity: 1;
         margin: 0;
       }
+      
     }
 
     .content-callfirst .txt-secondcall {
@@ -569,7 +573,7 @@
     .txt-firtcall br,
     .txt-secondcall br,
     .content-callsecond p br {
-      display: none;
+      display: none !important;
     }
 
     /* (optionnel) léger espacement pour compenser la disparition du <br> */
@@ -953,4 +957,53 @@
       height: 580px !important;
     }
   }
+}
+
+@media (max-width: 576px) {
+  /* Le panneau est déjà en position: fixed; on s'assure qu'il est positionné */
+.mobile-menu { position: fixed; }
+
+/* Bouton de fermeture (X) en haut à droite du panneau */
+.close-menu {
+  position: absolute;
+  top: 30px;           /* si ton menu démarre sous le header, c’est OK */
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .25s ease;
+  will-change: transform;
+
+  /* feedback accessibilité */
+  &:focus-visible {
+    outline: 2px solid #181818;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 50%;
+    height: 2px;
+    background: #ff4500;
+    transform-origin: center;
+    transition: transform .2s ease, background-color .2s ease, opacity .2s ease;
+  }
+
+  /* les 2 traits de la croix */
+  span:nth-child(1) { transform: translateY(-50%) rotate(45deg); }
+  span:nth-child(2) { transform: translateY(-50%) rotate(-45deg); }
+
+  &:hover {
+    transform: rotate(90deg) scale(1);
+  }
+  &:hover span {
+    background: #181818; /* couleur des traits au survol */
+  }
+}
+
 }
