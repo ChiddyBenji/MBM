@@ -18,23 +18,22 @@ function Description() {
   ];
 
   useEffect(() => {
-  const txtElement = txtRef.current;
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-      }
-    },
-    { threshold: 0.4 }
-  );
+    const txtElement = txtRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
 
-  if (txtElement) observer.observe(txtElement);
+    if (txtElement) observer.observe(txtElement);
 
-  return () => {
-    if (txtElement) observer.unobserve(txtElement);
-  };
-}, []);
-
+    return () => {
+      if (txtElement) observer.unobserve(txtElement);
+    };
+  }, []);
 
   return (
     <section id="how">
@@ -44,10 +43,14 @@ function Description() {
           className={`content-txt-description ${visible ? "fade-left" : ""}`}
         >
           <h2>
-            {txtdescription.map((line, index) => (
-              <span key={index}>
+            {txtdescription.map((line, i) => (
+              <span key={i}>
                 {line}
-                {index !== txtdescription.length - 1 && <br />}
+                {i !== txtdescription.length - 1 && (
+                  <>
+                    <br className="only-desktop" />{" "}
+                  </>
+                )}
               </span>
             ))}
           </h2>
