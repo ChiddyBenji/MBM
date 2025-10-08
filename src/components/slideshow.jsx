@@ -1,23 +1,20 @@
 import { useState, useRef, useEffect } from "react";
-import three from "../assets/three.jpg";
-import sugar from "../assets/sugar.png";
-import echec from "../assets/echec.png";
 
 const slideshowData = [
   {
-    img: echec,
+    img: "/echec.png",
     title: "Mates - Stainless steel",
     description:
       "Founded in 2025, Mate embodies artisanal excellence. Each piece of their stainless steel chess set is crafted by master artisans passionate about the art of chess.",
   },
   {
-    img: three,
+    img: "/three.jpg",
     title: "Art of Photography",
     description:
       "Explore the world of photography through the lens of professional photographers, capturing moments that define creativity.",
   },
   {
-    img: sugar,
+    img: "/sugar.png",
     title: "Luxury Furniture",
     description:
       "A perfect blend of craftsmanship and elegance, our luxury furniture line is designed for those who appreciate quality and comfort.",

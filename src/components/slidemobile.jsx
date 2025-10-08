@@ -1,22 +1,19 @@
 import { useRef, useState } from "react";
-import dcube from "../assets/dcube.png";
-import dglobe from "../assets/dglobe.png";
-import dtriangle from "../assets/dtriangle.png";
 
 function SlideMobile() {
   const slides = [
     {
-      img: dcube,
+      img: "/dcube.png",
       title: "INTEMPOREL",
       content: "Un style intemporel qui traverse les époques.",
     },
     {
-      img: dglobe,
+      img: "/dglobe.png",
       title: "MODERNE",
-      content: "Un design moderne qui s’adapte aux tendances actuelles.",
+      content: "Un design moderne qui s'adapte aux tendances actuelles.",
     },
     {
-      img: dtriangle,
+      img: "/dtriangle.png",
       title: "EFFICACE",
       content: [
         "Chaque pixel a un rôle.",
@@ -81,7 +78,7 @@ function SlideMobile() {
             type="button"
             className={`indentation ${i === index ? "active" : ""}`}
             onClick={() => goTo(i)}
-            aria-label={`Aller à l’image ${i + 1}`}
+            aria-label={`Aller à l'image ${i + 1}`}
             aria-pressed={i === index}
           />
         ))}

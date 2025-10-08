@@ -1,25 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import webflow from "../assets/webflow.png";
-import zed from "../assets/zed.png";
-import wix from "../assets/wix.png";
-import shophify from "../assets/shophify.png";
-import wordpress from "../assets/wordpress.png";
-import idOne from "../assets/identity-one.png";
-import idTwo from "../assets/identity-two.png";
-import idThree from "../assets/identity-three.png";
-import idFour from "../assets/identity-four.png";
-import idFive from "../assets/identity-five.png";
-import idSix from "../assets/identity-six.png";
-import idSeven from "../assets/identity-seven.png";
-import idEight from "../assets/identity-eight.png";
-import idNine from "../assets/identity-nine.png";
-import idTen from "../assets/identity-ten.png";
-import idEleven from "../assets/identity-eleven.png";
-import idTwelve from "../assets/identity-twelve.png";
-import idThirteen from "../assets/identity-thirteen.png";
 import MiniTemplates from "../components/mini-templates";
-
 
 // 🔁 Composant Modale via React Portal
 function Modal({ children, onClose }) {
@@ -133,35 +114,35 @@ function Template() {
   }, [zoomImg]);
 
   const iconTemplate = [
-    { src: webflow, alt: "Webflow" },
-    { src: zed, alt: "Zed" },
-    { src: wix, alt: "Wix" },
-    { src: shophify, alt: "Shopify" },
-    { src: wordpress, alt: "WordPress" },
+    { src: "/webflow.png", alt: "Webflow" },
+    { src: "/zed.png", alt: "Zed" },
+    { src: "/wix.png", alt: "Wix" },
+    { src: "/shophify.png", alt: "Shopify" },
+    { src: "/wordpress.png", alt: "WordPress" },
   ];
 
   const imageGroups = {
     group1: [
-      { className: "idTwo", src: idTwo, alt: "id-two" },
-      { className: "idOne", src: idOne, alt: "id-one" },
+      { className: "idTwo", src: "/identity-two.png", alt: "id-two" },
+      { className: "idOne", src: "/identity-one.png", alt: "id-one" },
     ],
     group2: [
-      { className: "idThree", src: idThree, alt: "idThree" },
-      { className: "idFour", src: idFour, alt: "idFour" },
+      { className: "idThree", src: "/identity-three.png", alt: "idThree" },
+      { className: "idFour", src: "/identity-four.png", alt: "idFour" },
     ],
     group3: [
-      { className: "idFive", src: idFive, alt: "idFive" },
-      { className: "idSix", src: idSix, alt: "idSix" },
+      { className: "idFive", src: "/identity-five.png", alt: "idFive" },
+      { className: "idSix", src: "/identity-six.png", alt: "idSix" },
     ],
     group4: [
-      { className: "idSeven", src: idSeven, alt: "idSeven" },
-      { className: "idNine", src: idNine, alt: "idNine" },
-      { className: "idEight", src: idEight, alt: "idEight" },
+      { className: "idSeven", src: "/identity-seven.png", alt: "idSeven" },
+      { className: "idNine", src: "/identity-nine.png", alt: "idNine" },
+      { className: "idEight", src: "/identity-eight.png", alt: "idEight" },
     ],
     group5: [
-      { className: "idTwelve", src: idTwelve, alt: "idTwelve" },
-      { className: "idEleven", src: idEleven, alt: "idEleven" },
-      { className: "idThirteen", src: idThirteen, alt: "idThirteen" },
+      { className: "idTwelve", src: "/identity-twelve.png", alt: "idTwelve" },
+      { className: "idEleven", src: "/identity-eleven.png", alt: "idEleven" },
+      { className: "idThirteen", src: "/identity-thirteen.png", alt: "idThirteen" },
     ],
   };
 
@@ -181,7 +162,7 @@ function Template() {
               ))}
             </div>
             <p className="texte">
-              Des blueprints web intemporels, <br /> prêts à l’emploi.
+              Des blueprints web intemporels, <br /> prêts à l&apos;emploi.
             </p>
           </div>
           <div>
@@ -214,7 +195,7 @@ function Template() {
             </div>
 
             <div className="content-img-two">
-              <TiltImage className="dog" src={idTen} alt="idTen" onClick={() => setZoomImg(idTen)} scale={scrollScale} />
+              <TiltImage className="dog" src="/identity-ten.png" alt="idTen" onClick={() => setZoomImg("/identity-ten.png")} scale={scrollScale} />
             </div>
           </div>
 

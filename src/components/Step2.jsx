@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import ecrou from "../assets/ecrou.png";
-import holo from "../assets/holo.png";
 import StepDots from "../components/StepDots";
 
 function Step2({ step }) {
@@ -71,7 +69,7 @@ function Step2({ step }) {
           className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
           ref={imgRef}
         >
-          <img src={holo} alt="holographique" />
+          <img src="/holo.png" alt="holographique" />
         </div>
         <div className="txt-secondcall">
           <p ref={pRightRef} className={fadeRight ? "fade-right" : ""}>
@@ -79,7 +77,7 @@ function Step2({ step }) {
           </p>
         </div>
         <div className="content-push-scroll">
-          <img src={ecrou} alt="scroll icon" />
+          <img src="/ecrou.png" alt="scroll icon" />
         </div>
       </div>
 

@@ -1,6 +1,4 @@
 import React, { useRef } from "react";
-import "../styles/App.scss";
-import logo from "../assets/big-logo.png";
 
 function Footer() {
   const containerRef = useRef(null);
@@ -34,7 +32,7 @@ function Footer() {
           onMouseLeave={handleMouseLeave}
         >
           <div className="logo-3d" ref={logoRef}>
-            <img src={logo} alt="Logo MB Studio" className="logo-footer" />
+            <img src="/big-logo.png" alt="Logo MB Studio" className="logo-footer" />
           </div>
         </div>
 

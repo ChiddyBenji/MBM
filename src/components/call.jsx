@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import call from "../assets/call.png";
-import holo from "../assets/holo.png";
 import StepDots from "../components/StepDots"; 
 
 function Call({ step }) {
@@ -65,7 +63,7 @@ function Call({ step }) {
           <div className="txt-firtcall">
             <p ref={pLeftRef} className={fadeLeft ? "fade-left" : ""}>
               Un parcours clair, 
-              <br /> de l'idée
+              <br /> de l&apos;idée
             </p>
           </div>
 
@@ -73,7 +71,7 @@ function Call({ step }) {
             className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
             ref={imgRef}
           >
-            <img src={call} alt="smartphone" />
+            <img src="/call.png" alt="smartphone" />
           </div>
 
           <div className="txt-secondcall">
@@ -83,7 +81,7 @@ function Call({ step }) {
           </div>
 
           <div className="content-push-scroll">
-            <img src={holo} alt="scroll icon" />
+            <img src="/holo.png" alt="scroll icon" />
           </div>
         </div>
 

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/App.scss";
-import logo from "../assets/logo.png";
+import { useRouter } from "next/router";
 
 function Header() {
   const buttons = ["Who", "How", "What", "Template", "Plans"];
   const [activeButton, setActiveButton] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const scrollToId = (id) => {
     if (id === "plans") {
@@ -57,14 +55,14 @@ function Header() {
           <button
             onClick={() => {
               setActiveButton(null);
-              navigate("/");
+              router.push("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
               setIsMenuOpen(false);
             }}
             className="logo-button"
-            aria-label="Retour à l’accueil"
+            aria-label="Retour à l'accueil"
           >
-            <img src={logo} alt="Logo" className="logo" />
+            <img src="/logo.png" alt="Logo" className="logo" />
           </button>
         </div>
 

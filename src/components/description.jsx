@@ -1,4 +1,3 @@
-import "../styles/App.scss";
 import Dropdown from "../components/dropdown";
 import SlideMobile from "../components/slidemobile";
 import { useEffect, useRef, useState } from "react";
