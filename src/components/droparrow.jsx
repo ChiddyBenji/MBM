@@ -1,6 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import "../styles/App.scss";
-import droparrow from "../assets/arrow.png";
 
 function DropArrow() {
   const [showArrow, setShowArrow] = useState(false);
@@ -24,7 +22,7 @@ function DropArrow() {
         className={`drop-arrow ${showArrow ? "visible" : "hidden"}`}
         onClick={scrollToTop}
       >
-        <img src={droparrow} alt="Flèche vers le haut" />
+        <img src="/arrow.png" alt="Flèche vers le haut" />
       </div>
     </div>
   );

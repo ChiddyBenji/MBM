@@ -1,7 +1,3 @@
-import "../styles/App.scss";
-import logo from "../assets/logo.png";
-import arrowdown from "../assets/arrowdown.png";
-
 function Front() {
   const title = [
     "Architectes du Web.",
@@ -10,7 +6,7 @@ function Front() {
   ];
   const p = [
     "Nous concevons des sites web qui",
-    "visent l’excellence —",
+    "visent l'excellence —",
     " pas le superflu.",
   ];
 
@@ -28,7 +24,7 @@ function Front() {
     <section id="who">
       <div className="content-front">
         <div className="content-logo-front">
-          <img src={logo} alt="Logo de l'entreprise" />
+          <img src="/logo.png" alt="Logo de l'entreprise" />
         </div>
         <div className="content-title-front">
           <h1>
@@ -48,7 +44,7 @@ function Front() {
         </div>
         <div className="content-arrow-front">
           <img
-            src={arrowdown}
+            src="/arrowdown.png"
             alt="Flèche vers le bas"
             onClick={scrollToNextSection}
           />

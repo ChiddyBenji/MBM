@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import tecrou from "../assets/tecrou.png";
 import StepDots from "../components/StepDots";
 
 
@@ -71,7 +70,7 @@ function Step3({ step }) {
           className={`img-call ${fadeUp ? "fade-in-section" : ""}`}
           ref={imgRef}
         >
-          <img src={tecrou} alt="sphere" />
+          <img src="/tecrou.png" alt="sphere" />
         </div>
         <div className="txt-secondcall">
           <p ref={pRightRef} className={fadeRight ? "fade-right" : ""}>

@@ -34,7 +34,7 @@ function Form() {
 
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // On applique l’anim sur .form-one / .form-two,
+  // On applique l'anim sur .form-one / .form-two,
   // mais on OBSERVE des enfants stables (qui gardent une boîte)
   const leftRef = useRef(null);   // .content-project
   const rightRef = useRef(null);  // .email-template
@@ -44,7 +44,7 @@ function Form() {
   useEffect(() => {
     const options = {
       threshold: 0.2,
-      rootMargin: "0px 0px -10% 0px", // déclenche un peu avant d’être totalement visible
+      rootMargin: "0px 0px -10% 0px", // déclenche un peu avant d'être totalement visible
     };
 
     const leftEl = leftRef.current;
@@ -114,7 +114,7 @@ function Form() {
       .map(([key]) => `- ${dejaItems.find((item) => item.id === key)?.label}`)
       .join("\n");
 
-    const body = `Bonjour MB Studio,\n\nJe m'appelle ${formData.nom1}. Je vous contacte parce que j’ai besoin de ${formData.besoin1} et ${formData.besoin2} pour ${formData.entreprise}.\n\nJ’ai déjà :\n${checkedItems}\n\nMon budget est de ${formData.budget}, et j’aimerais lancer le projet dans ${formData.delai}.\nVous pouvez me contacter par ${formData.contactMoyen} à ${formData.email}.\n\nÀ bientôt, ${formData.nom2}.`;
+    const body = `Bonjour MB Studio,\n\nJe m'appelle ${formData.nom1}. Je vous contacte parce que j'ai besoin de ${formData.besoin1} et ${formData.besoin2} pour ${formData.entreprise}.\n\nJ'ai déjà :\n${checkedItems}\n\nMon budget est de ${formData.budget}, et j'aimerais lancer le projet dans ${formData.delai}.\nVous pouvez me contacter par ${formData.contactMoyen} à ${formData.email}.\n\nÀ bientôt, ${formData.nom2}.`;
 
     window.open(
       `mailto:mbstudio@gmail.com?subject=Demande de projet MB Studio&body=${encodeURIComponent(
@@ -182,7 +182,7 @@ function Form() {
             <p>Bonjour MB Studio,</p>
 
             <p>
-              Je m’appelle <span className="paren">(</span>
+              Je m&apos;appelle <span className="paren">(</span>
               <input
                 type="text"
                 name="nom1"
@@ -192,7 +192,7 @@ function Form() {
                 onChange={handleInputChange}
                 required
               />
-              <span className="paren">)</span> Je vous contacte parce que j’ai
+              <span className="paren">)</span> Je vous contacte parce que j&apos;ai
               besoin de <br className="br-desktop" />{" "}
               <span className="paren">(</span>
               <input
@@ -227,7 +227,7 @@ function Form() {
             </p>
 
             <div className="content-radio-list">
-              <p>J’ai déjà :</p>
+              <p>J&apos;ai déjà :</p>
               <ul className="radio-list">
                 {dejaItems.map((item) => (
                   <li key={item.id}>
@@ -258,7 +258,7 @@ function Form() {
                 value={formData.budget}
                 onChange={handleInputChange}
               />
-              <span className="paren">)</span> et j’aimerais lancer le{" "}
+              <span className="paren">)</span> et j&apos;aimerais lancer le{" "}
               <br className="br-desktop" /> projet dans{" "}
               <span className="paren">(</span>
               <input

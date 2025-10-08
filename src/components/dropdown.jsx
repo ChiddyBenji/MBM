@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/App.scss";
 
 function Dropdown() {
   const dropdowns = [
@@ -11,7 +10,7 @@ function Dropdown() {
     {
       title: "MODERNE",
       shape: "circle",
-      content: "Un design moderne qui s’adapte aux tendances actuelles.",
+      content: "Un design moderne qui s'adapte aux tendances actuelles.",
     },
     {
       title: "EFFICACE",
